@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-13" />
+<meta name="date" content="2021-10-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -795,7 +795,7 @@ div.csl-indent {
 </div>
 <div id="decision-making-under-uncertainty" class="section level2" number="19.2">
 <h2><span class="header-section-number">19.2</span> Decision making under uncertainty</h2>
-<p>At this point, it is useful to take a look at where we have been in this course and where we are going. We did this in the case study, but we want to discuss it again in a little more detail. We first looked at descriptive models to help us understand our data. This also required us to get familiar with software. We learned about graphical summaries, data collection methods, and summary metrics.</p>
+<p>At this point, it is useful to take a look at where we have been in this book and where we are going. We did this in the case study, but we want to discuss it again in a little more detail. We first looked at descriptive models to help us understand our data. This also required us to get familiar with software. We learned about graphical summaries, data collection methods, and summary metrics.</p>
 <p>Next we learned about probability models. These models allowed us to use assumptions and a small number of parameters to make statements about data and also to simulate data. We found that there is a close tie between probability models and statistical models. In our first efforts at statistical modeling, we started to use data to create estimates for parameters of a probability model. This work resulted in point estimates via method of moments and maximum likelihood.</p>
 <p>Now we are moving more in depth into statistical models. This is going to tie all the ideas together. We are going to use data from a sample and ideas of randomization to make conclusions about a population. This will require probability models, descriptive models, and some new ideas and terminology. We will generate point estimates for a metric designed to answer the research question and then find ways to determine the variability in the metric.</p>
 <p><strong>Computational/Mathematical and hypothesis testing/confidence intervals context</strong></p>
@@ -805,7 +805,7 @@ div.csl-indent {
 </div>
 <div id="introduction-1" class="section level2" number="19.3">
 <h2><span class="header-section-number">19.3</span> Introduction</h2>
-<p>In this lesson we will introduce hypothesis testing. It is really an extension of our last lesson, the case study. We will put more emphasis on terms and core concepts. In this lesson we will use a computational solution but this will lead us into thinking of mathematical solutions.<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a> The role of the analyst is always key regardless of the perceived power of the computer. The analyst must take the research question and translate it into a numeric metric for evaluation. The analyst must decide on the type of data and its collection to evaluate the question. The analyst must evaluate the variability in the metric and determine what that means in relation to the original research question. The analyst must propose an answer.</p>
+<p>In this chapter we will introduce hypothesis testing. It is really an extension of our last chapter, the case study. We will put more emphasis on terms and core concepts. In this chapter we will use a computational solution but this will lead us into thinking of mathematical solutions.<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a> The role of the analyst is always key regardless of the perceived power of the computer. The analyst must take the research question and translate it into a numeric metric for evaluation. The analyst must decide on the type of data and its collection to evaluate the question. The analyst must evaluate the variability in the metric and determine what that means in relation to the original research question. The analyst must propose an answer.</p>
 </div>
 <div id="hypothesis-testing" class="section level2" number="19.4">
 <h2><span class="header-section-number">19.4</span> Hypothesis testing</h2>
@@ -819,7 +819,7 @@ You are annoyed by TV commercials. You suspect that there were more commercials 
 <p><strong>Exercise</strong>:
 Is this enough data? You decide to have your friends help you, so you actually only watch 5 hours and got the rest of the data from your friends. Is this a problem?</p>
 </blockquote>
-<p>We cannot determine if this is enough data without some type of subject matter knowledge. First we need to decide on what metric to use to determine if a difference exists, more to come on this, and second how big of a difference from a practical standpoint is of interest. Is a loss of 1 minute of TV show enough to say there is a difference? How about 5 minutes? These are not statistical questions, but depend on the context of the problem and often need subject matter expertise to answer. Often data is collected without thought to these considerations. There are several courses here at USAFA that attempt to answer these questions. It is called a sample size calculation. For the second question, the answer depends on the protocol and operating procedures used. If your friends are trained on how to measure the length of commercials, what counts as an ad, and their skills verified, then it is probably not a problem to use them to collect data. Consistency in measurement is the key.</p>
+<p>We cannot determine if this is enough data without some type of subject matter knowledge. First we need to decide on what metric to use to determine if a difference exists, more to come on this, and second how big of a difference from a practical standpoint is of interest. Is a loss of 1 minute of TV show enough to say there is a difference? How about 5 minutes? These are not statistical questions, but depend on the context of the problem and often need subject matter expertise to answer. Often data is collected without thought to these considerations. There are several methods that attempt to answer these questions, they are loosely called sample size calculations. This book will not focus on sample size calculations and leave it to the reader to learn more from other sources. For the second question, the answer depends on the protocol and operating procedures used. If your friends are trained on how to measure the length of commercials, what counts as an ad, and their skills verified, then it is probably not a problem to use them to collect data. Consistency in measurement is the key.</p>
 <p>The file <code>ads.csv</code> contains the data. Let’s read the data into <code>R</code> and start to summarize. Remember to load the appropriate <code>R</code> packages.</p>
 <div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="HYPOTEST.html#cb466-1" aria-hidden="true" tabindex="-1"></a>ads<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/ads.csv&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="HYPOTEST.html#cb467-1" aria-hidden="true" tabindex="-1"></a>ads</span></code></pre></div>
@@ -841,7 +841,7 @@ Is this enough data? You decide to have your friends help you, so you actually o
 ## Columns: 2
 ## $ basic   &lt;dbl&gt; 6.950, 10.013, 10.620, 10.150, 8.583, 7.620, 8.233, 10.350, 11…
 ## $ premium &lt;dbl&gt; 3.383, 7.800, 9.416, 4.660, 5.360, 7.630, 4.950, 8.013, 7.800,…</code></pre>
-<p>Notice that this data is not <code>tidy</code>, for example does each row represent a single observations? Let’s clean up, <code>tidy</code>, our data. Remember to ask yourself “What do I want <code>R</code> to do?” and “What does it need to do this?” We want one column that specifies the channel type and the other to specify length.</p>
+<p>Notice that this data may not be <code>tidy</code>, what does each row represent and is it a single observations? We don’t know how the data was obtained, but if each row is a different friend who watches one basic and one premium channel, then it is possible this data is <code>tidy</code>. We want each observation to be a single show, wo let’s clean up, <code>tidy</code>, our data. Remember to ask yourself “What do I want <code>R</code> to do?” and “What does it need to do this?” We want one column that specifies the channel type and the other to specify length.</p>
 <p>We need <code>R</code> to put, <em>pivot</em>, the data into a longer form. We need the function <code>pivot_longer()</code>. For more information type <code>vignette("pivot")</code> at the command prompt in <code>R</code>.</p>
 <div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="HYPOTEST.html#cb471-1" aria-hidden="true" tabindex="-1"></a>ads <span class="ot">&lt;-</span> ads <span class="sc">%&gt;%</span></span>
 <span id="cb471-2"><a href="HYPOTEST.html#cb471-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">everything</span>(),<span class="at">names_to=</span><span class="st">&quot;channel&quot;</span>,<span class="at">values_to =</span> <span class="st">&quot;length&quot;</span>)</span>
@@ -883,7 +883,7 @@ Is this enough data? You decide to have your friends help you, so you actually o
 ## ...1 length numeric 3.383 7.4525  8.123 9.68825 11.016 8.03215 2.121412 20
 ##      missing
 ## ...1       0</code></pre>
-<p>This is not what we want, since we want to break it down by <code>channel</code> type.</p>
+<p>This summary is not what we want, since we want to break it down by <code>channel</code> type.</p>
 <div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="HYPOTEST.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(length<span class="sc">~</span>channel,<span class="at">data=</span>ads)</span></code></pre></div>
 <pre><code>##   channel   min      Q1 median       Q3    max   mean       sd  n missing
 ## 1   basic 6.950 8.30375  9.298 10.30000 11.016 9.2051 1.396126 10       0
@@ -1011,7 +1011,7 @@ Figure 19.2: Historgram of the sampling distribution by an approxiamte permutati
 <ol style="list-style-type: lower-roman">
 <li><span class="math inline">\(H_0\)</span>: Gender has no effect on promotion decisions.<br />
 </li>
-<li><span class="math inline">\(H_A\)</span>:] Women are discriminated against in promotion decisions.</li>
+<li><span class="math inline">\(H_A\)</span>: Women are discriminated against in promotion decisions.</li>
 </ol>
 <p>We used a difference in promotion proportions as our test statistic. The null hypothesis (<span class="math inline">\(H_0\)</span>) was a perspective of no difference. The data provided a point estimate of a -29.2% difference in recommended promotion rates between men and women. We determined that such a difference from chance alone would be rare: it would only happen about 2 in 100 times. When results like these are inconsistent with <span class="math inline">\(H_0\)</span>, we reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span>. Here, we concluded there was evidence of discrimination against women.</p>
 <p>The 2-in-100 chance is the p-value, which is a probability quantifying the strength of the evidence against the null hypothesis and in favor of the alternative.</p>
@@ -1221,15 +1221,19 @@ Using the p-value from the analysis, determine whether the data provide statisti
 <div id="homework-problems-18" class="section level2" number="19.6">
 <h2><span class="header-section-number">19.6</span> Homework Problems</h2>
 <ol style="list-style-type: decimal">
-<li><p>Repeat the analysis of the commercial length in the notes. This time use a different test statistic.</p></li>
-<li><p>State the null and alternative hypotheses.<br />
-</p></li>
-<li><p>Compute a test statistic.<br />
-</p></li>
-<li><p>Determine the p-value.<br />
-</p></li>
-<li><p>Draw a conclusion.</p></li>
-<li><p>Is yawning contagious?</p></li>
+<li>Repeat the analysis of the commercial length in the notes. This time use a different test statistic.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>State the null and alternative hypotheses.<br />
+</li>
+<li>Compute a test statistic.<br />
+</li>
+<li>Determine the p-value.<br />
+</li>
+<li>Draw a conclusion.</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Is yawning contagious?</li>
 </ol>
 <p>An experiment conducted by the , a science entertainment TV program on the Discovery Channel, tested if a person can be subconsciously influenced into yawning if another person near them yawns. 50 people were randomly assigned to two groups: 34 to a group where a person near them yawned (treatment) and 16 to a group where there wasn’t a person yawning near them (control). The following table shows the results of this experiment.</p>
 <p><span class="math display">\[

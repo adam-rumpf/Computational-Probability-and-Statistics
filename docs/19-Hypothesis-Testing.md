@@ -9,7 +9,7 @@
 
 ## Decision making under uncertainty  
 
-At this point, it is useful to take a look at where we have been in this course and where we are going. We did this in the case study, but we want to discuss it again in a little more detail. We first looked at descriptive models to help us understand our data. This also required us to get familiar with software. We learned about graphical summaries, data collection methods, and summary metrics.
+At this point, it is useful to take a look at where we have been in this book and where we are going. We did this in the case study, but we want to discuss it again in a little more detail. We first looked at descriptive models to help us understand our data. This also required us to get familiar with software. We learned about graphical summaries, data collection methods, and summary metrics.
 
 Next we learned about probability models. These models allowed us to use assumptions and a small number of parameters to make statements about data and also to simulate data. We found that there is a close tie between probability models and statistical models. In our first efforts at statistical modeling, we started to use data to create estimates for parameters of a probability model. This work resulted in point estimates via method of moments and maximum likelihood. 
 
@@ -25,7 +25,7 @@ The engines that drive the numeric results of a decision making model are either
 
 ## Introduction  
 
-In this lesson we will introduce hypothesis testing. It is really an extension of our last lesson, the case study. We will put more emphasis on terms and core concepts. In this lesson we will use a computational solution but this will lead us into thinking of mathematical solutions.^[In our opinion, this is how things developed historically. However, since computational tools prior to machine computers, humans in most cases, were limited and expensive, there was a shift to mathematical solutions. The relatively recent increase and availability in machine computational power has lead to a shift back to computational methods. Thus some people think mathematical methods predate computational but that is not the case.] The role of the analyst is always key regardless of the perceived power of the computer. The analyst must take the research question and translate it into a numeric metric for evaluation. The analyst must decide on the type of data and its collection to evaluate the question. The analyst must evaluate the variability in the metric and determine what that means in relation to the original research question. The analyst must propose an answer.
+In this chapter we will introduce hypothesis testing. It is really an extension of our last chapter, the case study. We will put more emphasis on terms and core concepts. In this chapter we will use a computational solution but this will lead us into thinking of mathematical solutions.^[In our opinion, this is how things developed historically. However, since computational tools prior to machine computers, humans in most cases, were limited and expensive, there was a shift to mathematical solutions. The relatively recent increase and availability in machine computational power has lead to a shift back to computational methods. Thus some people think mathematical methods predate computational but that is not the case.] The role of the analyst is always key regardless of the perceived power of the computer. The analyst must take the research question and translate it into a numeric metric for evaluation. The analyst must decide on the type of data and its collection to evaluate the question. The analyst must evaluate the variability in the metric and determine what that means in relation to the original research question. The analyst must propose an answer.
 
 ## Hypothesis testing
 
@@ -39,7 +39,7 @@ Here is one approach, we watch 20 random half hour shows of TV. Ten of those hou
 >**Exercise**: 
 Is this enough data? You decide to have your friends help you, so you actually only watch 5 hours and got the rest of the data from your friends. Is this a problem?
 
-We cannot determine if this is enough data without some type of subject matter knowledge. First we need to decide on what metric to use to determine if a difference exists, more to come on this, and second how big of a difference from a practical standpoint is of interest. Is a loss of 1 minute of TV show enough to say there is a difference? How about 5 minutes? These are not statistical questions, but depend on the context of the problem and often need subject matter expertise to answer. Often data is collected without thought to these considerations. There are several courses here at USAFA that attempt to answer these questions. It is called a sample size calculation. For the second question, the answer depends on the protocol and operating procedures used. If your friends are trained on how to measure the length of commercials, what counts as an ad, and their skills verified, then it is probably not a problem to use them to collect data. Consistency in measurement is the key.
+We cannot determine if this is enough data without some type of subject matter knowledge. First we need to decide on what metric to use to determine if a difference exists, more to come on this, and second how big of a difference from a practical standpoint is of interest. Is a loss of 1 minute of TV show enough to say there is a difference? How about 5 minutes? These are not statistical questions, but depend on the context of the problem and often need subject matter expertise to answer. Often data is collected without thought to these considerations. There are several methods that attempt to answer these questions, they are loosely called sample size calculations. This book will not focus on sample size calculations and leave it to the reader to learn more from other sources. For the second question, the answer depends on the protocol and operating procedures used. If your friends are trained on how to measure the length of commercials, what counts as an ad, and their skills verified, then it is probably not a problem to use them to collect data. Consistency in measurement is the key.
 
 The file `ads.csv` contains the data. Let's read the data into `R` and start to summarize. Remember to load the appropriate `R` packages.
 
@@ -84,7 +84,7 @@ glimpse(ads)
 ```
 
 
-Notice that this data is not `tidy`, for example does each row represent a single observations? Let's clean up, `tidy`, our data. Remember to ask yourself "What do I want `R` to do?" and "What does it need to do this?" We want one column that specifies the channel type and the other to specify length. 
+Notice that this data may not be `tidy`, what does each row represent and is it a single observations? We don't know how the data was obtained, but if each row is a different friend who watches one basic and one premium channel, then it is possible this data is `tidy`. We want each observation to be a single show, wo let's clean up, `tidy`, our data. Remember to ask yourself "What do I want `R` to do?" and "What does it need to do this?" We want one column that specifies the channel type and the other to specify length. 
 
 We need `R` to put, *pivot*, the data into a longer form. We need the function `pivot_longer()`. For more information type `vignette("pivot")` at the command prompt in `R`.
 
@@ -143,7 +143,7 @@ inspect(ads)
 ## ...1       0
 ```
 
-This is not what we want, since we want to break it down by `channel` type.
+This summary is not what we want, since we want to break it down by `channel` type.
 
 
 ```r
@@ -366,7 +366,7 @@ The test we performed is called a one-sided test since we only checked if the me
 In the last lesson we encountered a study from the 1970's that explored whether there was strong evidence that women were less likely to be promoted than men. The research question -- are females discriminated against in promotion decisions made by male managers? -- was framed in the context of hypotheses:  
 
 i. $H_0$: Gender has no effect on promotion decisions.  
-ii. $H_A$:] Women are discriminated against in promotion decisions.  
+ii. $H_A$: Women are discriminated against in promotion decisions.  
 
 We used a difference in promotion proportions as our test statistic. The null hypothesis ($H_0$) was a perspective of no difference. The data provided a point estimate of a -29.2\% difference in recommended promotion rates between men and women. We determined that such a difference from chance alone would be rare: it would only happen about 2 in 100 times. When results like these are inconsistent with $H_0$, we reject $H_0$ in favor of $H_A$. Here, we concluded there was evidence of discrimination against women.
 
@@ -657,10 +657,10 @@ Using the p-value from the analysis, determine whether the data provide statisti
 
 1. Repeat the analysis of the commercial length in the notes. This time use a different test statistic.  
 
-1. State the null and alternative hypotheses.  
-2. Compute a test statistic.  
-3. Determine the p-value.  
-4. Draw a conclusion.    
+a. State the null and alternative hypotheses.  
+b. Compute a test statistic.  
+c. Determine the p-value.  
+d. Draw a conclusion.    
 
 
 2. Is yawning contagious? 
