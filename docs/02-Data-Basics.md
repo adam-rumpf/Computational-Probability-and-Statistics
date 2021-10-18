@@ -222,7 +222,7 @@ First consider `fed_spend`, it is said to be a **numerical variable** since it c
 
 The `pop2010` variable is also numerical; it is sensible to add, subtract, or take averages with those values, although it seems to be a little different than `fed_spend`. This variable of the population count can only be a whole non-negative number ($0$, $1$, $2$, $...$). For this reason, the population variable is said to be **discrete** since it can only take specific numerical values. On the other hand, the federal spending variable is said to be **continuous**. Now technically, there are no truly continuous numerical variables since all measurements are finite up to some level of accuracy or measurement precision. However, in this course we will treat both types of numerical variables the same, that is as continuous variables for statistical modeling. The only place this will be different in this course is in probability models which we see in the probability modeling section.
 
-The variable **state** can take up to 51 values, after accounting for Washington, DC, and are summarized as: *AL*, ..., and *WY*. Because the responses themselves are categories, `state` is called a **categorical** variable,^[Sometimes also called a **nominal** variable.] and the possible values are called the variable's **levels**.
+The variable **state** can take up to 51 values, after accounting for Washington, DC, and are summarized as: *Alabama*, ..., and *Wyoming*. Because the responses themselves are categories, `state` is called a **categorical** variable,^[Sometimes also called a **nominal** variable.] and the possible values are called the variable's **levels**.
 
 <div class="figure">
 <img src="02-Data-Basics_files/figure-html/tax-fig-1.png" alt="Taxonomy of Variables." width="672" />
@@ -316,7 +316,6 @@ county_M377 %>%
            xlab="Poverty Rate (Percent)", 
            ylab="Federal Spending Per Capita",
            title="A scatterplot showing fed_spend against poverty", 
-           subtitle =  "Owsley County of Kentucky",
            cex=1,alpha=0.2) %>%
   gf_theme(theme_classic())
 ```
