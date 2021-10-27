@@ -5,7 +5,7 @@
 1) Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the $F$ distribution.   
 2) Conduct and interpret a goodness of fit test using both Pearson's chi-squared and randomization to evaluate the independence between two categorical variables.   
 3) Conduct and interpret a hypothesis test for the equality of two variances.   
-4) Know and check assumptions for the tests in this lesson.
+4) Know and check assumptions for the tests in the reading.
 
 ## Introduction
 
@@ -15,7 +15,7 @@ Remember that we have been using data to answer research questions. So far we ca
 
 In obtaining the sampling distribution we used randomization as an approximation to permutation exact tests, probability models, mathematical models, and the bootstrap. Each of these had different assumptions and different areas where they could be applied. In some cases, several methods can be applied to the problem to get a sense of the robustness to the different assumptions. For example, if you run a randomization test and a test using the CLT and they both give you similar results, you can feel better about your decision.
 
-Finding a single number metric to answer our research question can be difficult. For example, in the homework for last lesson, we wanted to determine if the prices of books at a campus bookstore were different from Amazon's prices. The metric we decided to use was the mean of the differences in prices. But is this the best way to answer the question? This metric has been used historically because of the need to use the $t$ distribution. However, there are other ways in which the prices of books can differ. Jack Welch was the CEO of GE for years and he made the claim that customers don't care about average but they do care about variability. The average temperature setting of your GE refrigerator could be off and you would adapt. However if the temperature had great variability, then you would be upset. So maybe metrics that incorporate variability might be good. In our bootstrap notes, we looked at the ages of males and females in the HELP study. In using a randomization permutation test, we assumed there was no difference in the distribution of ages between males and females. However, in the alternative we measured the difference in the distributions using only means. The means of these two populations could be equal but the distributions differ in other ways, for example variability. We could conduct a separate test for variances but we have to be careful about multiple comparisons because in that case the Type 1 error is inflated.
+Finding a single number metric to answer our research question can be difficult. For example, in the homework for last chapter, we wanted to determine if the prices of books at a campus bookstore were different from Amazon's prices. The metric we decided to use was the mean of the differences in prices. But is this the best way to answer the question? This metric has been used historically because of the need to use the $t$ distribution. However, there are other ways in which the prices of books can differ. Jack Welch was the CEO of GE for years and he made the claim that customers don't care about average but they do care about variability. The average temperature setting of your GE refrigerator could be off and you would adapt. However if the temperature had great variability, then you would be upset. So maybe metrics that incorporate variability might be good. In our bootstrap notes, we looked at the ages of males and females in the HELP study. In using a randomization permutation test, we assumed there was no difference in the distribution of ages between males and females. However, in the alternative we measured the difference in the distributions using only means. The means of these two populations could be equal but the distributions differ in other ways, for example variability. We could conduct a separate test for variances but we have to be careful about multiple comparisons because in that case the Type 1 error is inflated.
 
 We also learned that the use of the information in the data impacts the power of the test. In the golf ball example, when we used range as our metric, we did not have the same power as looking at the differences from expected values under the null hypothesis. There is some mathematical theory that leads to better estimators, they are called likelihood ratio tests, but this is beyond the scope of the book. What you can do is create a simulation where you simulate data from the alternative hypothesis and then measure the power. This will give you a sense of the quality of your metric. We only briefly looked at measuring power an earlier chapter and will not go further into this idea in this chapter.  
 
@@ -736,7 +736,7 @@ If we reject in the ANOVA test, we know there is a difference in at least one me
 
 1. Golf balls   
 
-Repeat the analysis of the golf ball problem from earlier this semester.
+Repeat the analysis of the golf ball problem from earlier in the book.
 
 
 a. Load the data and tally the data into a table. The data is in `golf_balls.csv`.   
@@ -745,7 +745,7 @@ c. Repeat part b. but assume balls with the numbers 1 and 2 occur 30\% of the ti
 
 2. Bootstrap hypothesis testing  
 
-Repeat the analysis of the MLB data from the lesson but this time generate a bootstrap distribution of the $F$ statistic.  
+Repeat the analysis of the MLB data from the reading but this time generate a bootstrap distribution of the $F$ statistic.  
 
 3. Test of variance
 
