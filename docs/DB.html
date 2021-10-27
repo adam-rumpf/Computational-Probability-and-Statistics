@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -967,7 +967,7 @@ small
 <p>Data frames are a convenient way to record and store data. If another individual or case is added to the data set, an additional row can be easily added. Similarly, another column can be added for a new variable.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br />
-We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called <code>county_M377</code> data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the <code>usdata</code> library and is called <code>county_complete</code>. The variables are summarized in help menu built into the <code>usdata</code> package<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. How might these data be organized in a data matrix?<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called <code>county_M377</code> data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the <code>usdata</code> library and is called <code>county_complete</code>. The variables are summarized in help menu built into the <strong>usdata</strong> package<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. How might these data be organized in a data matrix?<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
 </blockquote>
 <p>Using <code>R</code> we will create our data object. First we load the library <code>usdata</code>.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="DB.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usdata)</span></code></pre></div>
@@ -1064,7 +1064,7 @@ Figure 2.3: A scatterplot of the homeownership rate versus the percent of units 
 <p>Here are two questions:</p>
 <p><em>What do we want <code>R</code> to do?</em> and</p>
 <p><em>What must we give <code>R</code> for it to do this?</em></p>
-<p>We want <code>R</code> to create a scatterplot and to do this it needs, at a minimum, the data object, what we want on the <span class="math inline">\(x\)</span>-axis, and what we want on the <span class="math inline">\(y\)</span>-axis. More information on <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html"><code>ggformula</code></a> can be found by clicking on the link.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+<p>We want <code>R</code> to create a scatterplot and to do this it needs, at a minimum, the data object, what we want on the <span class="math inline">\(x\)</span>-axis, and what we want on the <span class="math inline">\(y\)</span>-axis. More information on <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html"><strong>ggformula</strong></a> can be found by clicking on the link.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
 
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="DB.html#cb39-1" aria-hidden="true" tabindex="-1"></a>county_M377 <span class="sc">%&gt;%</span></span>
 <span id="cb39-2"><a href="DB.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(fed_spend<span class="sc">~</span>poverty)</span></code></pre></div>

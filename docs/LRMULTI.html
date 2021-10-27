@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1211,7 +1211,7 @@ Compute the residual of the first observation in the dataframe using the regress
 <div class="sourceCode" id="cb988"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb988-1"><a href="LRMULTI.html#cb988-1" aria-hidden="true" tabindex="-1"></a>mario_mod_multi<span class="sc">$</span>residuals[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##        1 
 ## 1.923402</code></pre>
-<p>The <code>broom</code> package has a function <code>augment</code> that will calculate the predicted and residuals.</p>
+<p>The <strong>broom</strong> package has a function <code>augment()</code> that will calculate the predicted and residuals.</p>
 <div class="sourceCode" id="cb990"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb990-1"><a href="LRMULTI.html#cb990-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
 <div class="sourceCode" id="cb991"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb991-1"><a href="LRMULTI.html#cb991-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(mario_mod_multi) <span class="sc">%&gt;%</span></span>
 <span id="cb991-2"><a href="LRMULTI.html#cb991-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">1</span>)</span></code></pre></div>
@@ -1400,7 +1400,7 @@ Figure 30.7: Diagnostic residual plots for multiple regression model.
 <div id="interaction-and-higher-order-terms" class="section level2" number="30.4">
 <h2><span class="header-section-number">30.4</span> Interaction and Higher Order Terms</h2>
 <p>As a final short topic we want to explore <strong>feature engineering</strong>. Thus far we have not done any transformation to the predictors in the data set except maybe making categorical variables into factors. In data analysis competitions, such as Kaggle, feature engineering is often one of the most important steps. In Math 378, we will look at different tools but in this class we will look at simple transformations such as higher order terms and interactions.</p>
-<p>To make this section more relevant, we are going to switch to a different data set. Load the library <code>ISLR</code>, this is a package that you will use a great deal in Math 378.</p>
+<p>To make this section more relevant, we are going to switch to a different data set. Load the library <strong>ISLR</strong>.</p>
 <div class="sourceCode" id="cb1018"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1018-1"><a href="LRMULTI.html#cb1018-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span></code></pre></div>
 <p>The data set of interest is <code>Credit</code>. Use the help menu to read about the variables. This is a simulated data set of credit card debt.</p>
 <div class="sourceCode" id="cb1019"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1019-1"><a href="LRMULTI.html#cb1019-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Credit)</span></code></pre></div>

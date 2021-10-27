@@ -501,7 +501,7 @@ mario_mod_multi$residuals[1]
 ## 1.923402
 ```
 
-The `broom` package has a function `augment` that will calculate the predicted and residuals.
+The **broom** package has a function `augment()` that will calculate the predicted and residuals.
 
 
 ```r
@@ -798,7 +798,7 @@ plot(mario_mod_multi3)
 
 As a final short topic we want to explore **feature engineering**. Thus far we have not done any transformation to the predictors in the data set except maybe making categorical variables into factors. In data analysis competitions, such as Kaggle, feature engineering is often one of the most important steps. In Math 378, we will look at different tools but in this class we will look at simple transformations such as higher order terms and interactions. 
 
-To make this section more relevant, we are going to switch to a different data set. Load the library `ISLR`, this is a package that you will use a great deal in Math 378.
+To make this section more relevant, we are going to switch to a different data set. Load the library **ISLR**.
 
 
 ```r

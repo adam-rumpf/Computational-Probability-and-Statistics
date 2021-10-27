@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -841,10 +841,10 @@ div.csl-indent {
 <p>If you need to install a package, most likely it will be on CRAN, the Comprehensive R Archive Network. Before
 a package can be used, it must be installed on the computer (once per computer or account) and loaded into a session (once per <code>R</code> session). When you exit <code>R</code>, the package stays installed on the computer but will not be reloaded when <code>R</code> is started again.</p>
 <p>In summary, <code>R</code> has packages that can be downloaded and installed from online repositories such as CRAN. When you install a package, which only needs to be done once per computer or account, in <code>R</code> all it is doing is placing the source code in a library folder designated during the installation of <code>R</code>. Packages are typically collections of functions and variables that are specific to a certain task or subject matter.</p>
-<p>For example, to install the mosaic package, enter:</p>
+<p>For example, to install the <strong>mosaic</strong> package, enter:</p>
 <pre><code>install.packages(&quot;mosaic&quot;) # fetch package from CRAN</code></pre>
 <p>In RStudio there is a <em>Packages</em> tab that makes it easy to add and maintain packages.</p>
-<p>To use a package in a session, we must load it which makes it available to the current session only. When you start <code>R</code> again, you will have to load packages again. The command <code>library()</code> with the package name supplied as the argument is all that is needed. For this session, we will load <code>tidyverse</code> and <code>mosaic</code>. Note: the box below is executing the <code>R</code> commands, this is known as reproducible research since you can see the code and then you can run or modify as you need.</p>
+<p>To use a package in a session, we must load it which makes it available to the current session only. When you start <code>R</code> again, you will have to load packages again. The command <code>library()</code> with the package name supplied as the argument is all that is needed. For this session, we will load <strong>tidyverse</strong> and <strong>mosaic</strong>. Note: the box below is executing the <code>R</code> commands, this is known as reproducible research since you can see the code and then you can run or modify as you need.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="CS1.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-2"><a href="CS1.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span></code></pre></div>
 <p>Next read in the data into the working environment.</p>
@@ -890,7 +890,7 @@ a package can be used, it must be installed on the computer (once per computer o
 ## 1 control (50.3%), trmt (49.7%)                
 ## 2 no_event (89.8%), stroke (10.2%)             
 ## 3 no_event (83.8%), stroke (16.2%)</code></pre>
-<p>To keep things simple we will only look at the <code>outcome30</code> variable in this case study. We will summarize the data in a table. Later in the course, we will learn to do this using the <code>tidy</code> package; for now we use the <code>mosaic</code> package. This package makes use of the modeling formula that you will use extensively later in this course and in Math 378.</p>
+<p>To keep things simple we will only look at the <code>outcome30</code> variable in this case study. We will summarize the data in a table. Later in the course, we will learn to do this using the <strong>tidy</strong> package; for now we use the <strong>mosaic</strong> package. This package makes use of the modeling formula that you will use extensively later in this course and in Math 378.</p>
 <p>We want to summarize the data by making a table. In <code>mosaic</code> this is the <code>tally()</code> function. Before using this function, we have to understand the basic formula notation that <code>mosaic</code> uses. The basic format is:</p>
 <pre><code>goal( y ~ x, data = MyData, ... ) # pseudo-code for the formula template</code></pre>
 <p>We read <code>y ~ x</code> as “y tilde x” and interpret it in the equivalent forms: “y broken down by x”; “y modeled by x”; “y explained by x”; “y depends on x”; or “y accounted for by x.” For graphics, it’s reasonable to read the formula as “y vs. x,” which is exactly the convention used for coordinate axes.</p>
@@ -925,7 +925,7 @@ What proportion of the control group had a stroke? And why is this answer differ
 <div id="visualize-the-data" class="section level3" number="1.4.5">
 <h3><span class="header-section-number">1.4.5</span> Visualize the data</h3>
 <p>It is often important to visualize the data. The table is a type of visualization but in this section we will introduce a graphical method called bar charts.</p>
-<p>We will use the <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html"><strong>ggformula</strong></a> package to visualize. It is a wrapper to the <code>ggplot2</code> package which is becoming the industry standard for generating professional graphics. However, its interface is difficult to learn and we will ease into by using <code>ggformula</code> which makes use of the formula notation introduced above. The <strong>ggformula</strong> package was loaded when we loaded <strong>mosaic</strong>.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>We will use the <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html"><strong>ggformula</strong></a> package to visualize. It is a wrapper to the <strong>ggplot2</strong> package which is becoming the industry standard for generating professional graphics. However, its interface is difficult to learn and we will ease into by using <code>ggformula</code> which makes use of the formula notation introduced above. The <strong>ggformula</strong> package was loaded when we loaded <code>mosaic</code>.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
 <p>To generate a basic graphic, we need to ask ourselves what information we are trying to see, what particular type of graph is best, what corresponding <code>R</code> function to use, and what information that <code>R</code> function needs in order to build a plot. For categorical data we want a bar chart and the <code>R</code> function <code>gf_bar()</code> needs the data object and the variable(s) of interest.</p>
 <p>Here is our first attempt. In Figure <a href="CS1.html#fig:first-fig">1.1</a>, we leave the <code>y</code> portion of our formula blank. Doing this implies that we simply want to view the number/count of <code>outcome30</code> by type. We will see the two levels of <code>outcome30</code> on the x-axis and counts on the y-axis.</p>
 

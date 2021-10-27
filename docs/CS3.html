@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -897,7 +897,7 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 <p><strong>Exercise</strong>:
 What is the difference in promotion rates between the two simulated groups? How does this compare to the observed difference 29.2% from the actual study?<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a></p>
 </blockquote>
-<p>Calculating by hand will not help in a simulation, so we must write a function or use an existing one. We will use <code>diffprop</code> from the <code>mosiac</code> package. The code to find the difference for the original data is:</p>
+<p>Calculating by hand will not help in a simulation, so we must write a function or use an existing one. We will use <code>diffprop</code> from the <strong>mosiac</strong> package. The code to find the difference for the original data is:</p>
 <div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="CS3.html#cb454-1" aria-hidden="true" tabindex="-1"></a>(obs<span class="ot">&lt;-</span><span class="fu">diffprop</span>(decision<span class="sc">~</span>gender,<span class="at">data=</span>discrim))</span></code></pre></div>
 <pre><code>##   diffprop 
 ## -0.2916667</code></pre>

@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -895,7 +895,7 @@ Figure 23.2: Density plot of heights of local college students.
 </div>
 <div id="bootstrap" class="section level3" number="23.4.2">
 <h3><span class="header-section-number">23.4.2</span> Bootstrap</h3>
-<p>The idea behind the bootstrap is that we will get an estimate of the distribution of the statistic of interest by sampling the original data with replacement. We must sample under the same regime as the original data was collected. In <code>R</code>, we will use the <code>resample()</code> function from the <code>mosaic</code> package. There are entire packages dedicated to resampling such as <strong>boot</strong> and this is a great deal of information about these types of packages online.</p>
+<p>The idea behind the bootstrap is that we will get an estimate of the distribution of the statistic of interest by sampling the original data with replacement. We must sample under the same regime as the original data was collected. In <code>R</code>, we will use the <code>resample()</code> function from the <strong>mosaic</strong> package. There are entire packages dedicated to resampling such as <strong>boot</strong> and this is a great deal of information about these types of packages online.</p>
 <p>When applied to a dataframe, the <code>resample()</code> function samples rows with replacement to produce a new data
 frame with the same number of rows as the original, but some rows will be duplicated and others missing.</p>
 <p>To illustrate, let’s use <code>resample()</code> on the first 10 positive integers.</p>
@@ -1226,7 +1226,7 @@ Figure 23.9: Sampling distribution of the difference in means.
 <ol style="list-style-type: decimal">
 <li>There are more types of bootstrap techniques, right?</li>
 </ol>
-<p>Yes! There are many excellent bootstrap techniques. We have only chosen to present two bootstrap techniques that could be explained in a single lesson and that are also reasonably reliable. There are many adjustments that can be made to speed up and improve accuracy. Packages such as <code>resample</code> and <code>boot</code> are more appropriate for these situations.</p>
+<p>Yes! There are many excellent bootstrap techniques. We have only chosen to present two bootstrap techniques that could be explained in a single lesson and that are also reasonably reliable. There are many adjustments that can be made to speed up and improve accuracy. Packages such as <strong>resample</strong> and <strong>boot</strong> are more appropriate for these situations.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>I’ve heard the percentile bootstrap is very robust.</li>
 </ol>
@@ -1297,7 +1297,7 @@ Write a function and find the <em>MAD</em> of the data.<br />
 <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_{diff}=0\)</span>. There is no difference in the average textbook price.<br />
 <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mu_{diff} \neq 0\)</span>. There is a difference in average prices.</p>
 <ol start="4" style="list-style-type: lower-alpha">
-<li>To use a <span class="math inline">\(t\)</span> distribution, the variable <code>diff</code> has to independent and normally distributed. Since the 73 books represent less than 10% of the population, the assumption that the random sample is independent is reasonable. Check normality using <code>qqnorsim()</code> from the <code>openintro</code> package. It generates 8 qq plots of simulated normal data that you can use to judge the <code>diff</code> variable.<br />
+<li>To use a <span class="math inline">\(t\)</span> distribution, the variable <code>diff</code> has to independent and normally distributed. Since the 73 books represent less than 10% of the population, the assumption that the random sample is independent is reasonable. Check normality using <code>qqnorsim()</code> from the <strong>openintro</strong> package. It generates 8 qq plots of simulated normal data that you can use to judge the <code>diff</code> variable.<br />
 </li>
 <li>Run a <span class="math inline">\(t\)</span> test on the <code>diff</code> variable. Report the p-value and conclusion.<br />
 </li>

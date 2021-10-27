@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1016,7 +1016,7 @@ Figure 31.1: Logitstic function with some example points plotted.
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Examining the <strong>p-value</strong> associated with the coefficient for <code>stock_photo</code>, we can see that it is significant. Thus we reject the null hypothesis that the coefficient is zero. There is a relationship between <code>cond</code> and <code>stock_photo</code>, as we found with the Fisher’s test.</p>
-<p>We can use the <code>broom</code> package to summarize the output and generate model fits.</p>
+<p>We can use the <strong>broom</strong> package to summarize the output and generate model fits.</p>
 <div class="sourceCode" id="cb1052"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1052-1"><a href="LOGREG.html#cb1052-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(mario_mod2)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   term           estimate std.error statistic   p.value
@@ -1344,7 +1344,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 </div>
 <div id="confidence-intervals-2" class="section level2" number="31.4">
 <h2><span class="header-section-number">31.4</span> Confidence intervals</h2>
-<p>In this section we will generate confidence intervals. This section is experimental since we are not sure how <code>do()</code> from the <code>mosaic</code> package will work with the <code>glm()</code> function, but let’s experiment.</p>
+<p>In this section we will generate confidence intervals. This section is experimental since we are not sure how <code>do()</code> from the <strong>mosaic</strong> package will work with the <code>glm()</code> function, but let’s experiment.</p>
 <div id="confidence-intervals-for-a-parameter" class="section level3" number="31.4.1">
 <h3><span class="header-section-number">31.4.1</span> Confidence intervals for a parameter</h3>
 <p>First, let’s use the <code>R</code> built-in function <code>confint()</code> to find the confidence interval for the simple logistic regression model coefficients.</p>
@@ -1377,7 +1377,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <span id="cb1108-2"><a href="LOGREG.html#cb1108-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span><span class="fu">resample</span>(mariokart),</span>
 <span id="cb1108-3"><a href="LOGREG.html#cb1108-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
-## 1 -38.64549       22.45673 0.3340849    1      1</code></pre>
+## 1 -15.98062       5.108415 0.2319267    1      1</code></pre>
 <p>Again, it looks like what we expect. Now let’s bootstrap the coefficients and summarize the results.</p>
 <div class="sourceCode" id="cb1110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1110-1"><a href="LOGREG.html#cb1110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5011</span>)</span>
 <span id="cb1110-2"><a href="LOGREG.html#cb1110-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span>total_pr,</span>

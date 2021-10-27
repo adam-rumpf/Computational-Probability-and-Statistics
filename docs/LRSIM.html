@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -810,7 +810,7 @@ The latter is a special case of a more general rule: sample <span class="math in
 </div>
 <div id="confidence-intervals-for-parameters" class="section level2" number="29.3">
 <h2><span class="header-section-number">29.3</span> Confidence intervals for parameters</h2>
-<p>To build a confidence interval for the slope parameter, we will resample the data or residuals and generate a new regression model. This process does not assume normality of the residuals. We will use functions from the <code>mosaic</code> package to complete this work. However, know that <code>tidymodels</code> and <code>purrr</code> are more sophisticated tools for doing this work.</p>
+<p>To build a confidence interval for the slope parameter, we will resample the data or residuals and generate a new regression model. This process does not assume normality of the residuals. We will use functions from the <strong>mosaic</strong> package to complete this work. However, know that <code>tidymodels</code> and <code>purrr</code> are more sophisticated tools for doing this work.</p>
 <div id="resampling" class="section level3" number="29.3.1">
 <h3><span class="header-section-number">29.3.1</span> Resampling</h3>
 <p>To make this ideas more salient, let’s use the Starbucks example again.</p>
@@ -900,7 +900,7 @@ Figure 29.2: A histogram of the <span class="math inline">\(R^2\)</span> values 
 </p>
 </div>
 <p>This is nice work. So powerful.</p>
-<p>Let’s see how we could accomplish this same work using the <code>infer</code> package.</p>
+<p>Let’s see how we could accomplish this same work using the <strong>infer</strong> package.</p>
 <div class="sourceCode" id="cb897"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb897-1"><a href="LRSIM.html#cb897-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer)</span></code></pre></div>
 <p>To check that we can use this package, let’s find the slope estimate.</p>
 <div class="sourceCode" id="cb898"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb898-1"><a href="LRSIM.html#cb898-1" aria-hidden="true" tabindex="-1"></a>slope_estimate <span class="ot">&lt;-</span> starbucks <span class="sc">%&gt;%</span></span>
@@ -1094,7 +1094,7 @@ Figure 29.5: Boxplot of loan interest rates from the Lending Club based on homeo
 ## Residual standard error: 4.037 on 95 degrees of freedom
 ## Multiple R-squared:  0.08517,    Adjusted R-squared:  0.06591 
 ## F-statistic: 4.422 on 2 and 95 DF,  p-value: 0.01458</code></pre>
-<p>Note that by default, <code>R</code> set the <code>MORTGAGE</code> level as the reference category. This is because it is first value when sorted alphabetically. You can control this by changing the order of the factor levels. The package <code>forcats</code> helps with this effort.</p>
+<p>Note that by default, <code>R</code> set the <code>MORTGAGE</code> level as the reference category. This is because it is first value when sorted alphabetically. You can control this by changing the order of the factor levels. The package <strong>forcats</strong> helps with this effort.</p>
 <p>How would we interpret this output? Since <code>MORTGAGE</code> is reference category, the intercept is effectively the estimated, average, interest rate for home owners with a mortgage.</p>
 <div class="sourceCode" id="cb936"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb936-1"><a href="LRSIM.html#cb936-1" aria-hidden="true" tabindex="-1"></a>loans100 <span class="sc">%&gt;%</span></span>
 <span id="cb936-2"><a href="LRSIM.html#cb936-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(homeownership <span class="sc">==</span> <span class="st">&quot;MORTGAGE&quot;</span>) <span class="sc">%&gt;%</span></span>

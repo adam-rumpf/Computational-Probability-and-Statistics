@@ -166,7 +166,7 @@ where $\hat{e}_i$ is the observed $i$th **residual** ($\hat{e}_i=y_i-\hat{\beta}
 
 ### Possum example  
 
-We will let `R` do the heavy work of minimizing the sum of squares. The function is `lm()` as we learned in the case study. This function needs a formula and data for input. The formula notation should be easy for us since we have worked with formulas so much in the `mosaic` package. 
+We will let `R` do the heavy work of minimizing the sum of squares. The function is `lm()` as we learned in the case study. This function needs a formula and data for input. The formula notation should be easy for us since we have worked with formulas so much in the **mosaic** package. 
 
 First create the model:
 
@@ -254,7 +254,7 @@ The first line repeats the model formula. The second line is a descriptive summa
 
 The row with the residual standard error is an estimate of the unexplained variance. The next rows give a summary of the model fit and we will discuss in the next lessons.
 
-In the `tidyverse` we may want to have the table above in a `tibble`. The `broom` package, which we have seen before, helps with this effort.
+In the `tidyverse` we may want to have the table above in a `tibble`. The **broom** package, which we have seen before, helps with this effort.
 
 
 ```{r}

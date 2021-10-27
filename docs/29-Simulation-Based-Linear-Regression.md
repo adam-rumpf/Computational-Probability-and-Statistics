@@ -30,7 +30,7 @@ Bootstrapping residuals corresponds to a designed experiment, where the $x$ valu
 
 ## Confidence intervals for parameters  
 
-To build a confidence interval for the slope parameter, we will resample the data or residuals and generate a new regression model. This process does not assume normality of the residuals. We will use functions from the `mosaic` package to complete this work. However, know that `tidymodels` and `purrr` are more sophisticated tools for doing this work.
+To build a confidence interval for the slope parameter, we will resample the data or residuals and generate a new regression model. This process does not assume normality of the residuals. We will use functions from the **mosaic** package to complete this work. However, know that `tidymodels` and `purrr` are more sophisticated tools for doing this work.
 
 ### Resampling  
 
@@ -203,7 +203,7 @@ results %>%
 
 This is nice work. So powerful.
 
-Let's see how we could accomplish this same work using the `infer` package.
+Let's see how we could accomplish this same work using the **infer** package.
 
 
 ```r
@@ -569,7 +569,7 @@ summary(loan_mod)
 ## F-statistic: 4.422 on 2 and 95 DF,  p-value: 0.01458
 ```
 
-Note that by default, `R` set the `MORTGAGE` level as the reference category. This is because it is first value when sorted alphabetically. You can control this by changing the order of the factor levels. The package `forcats` helps with this effort. 
+Note that by default, `R` set the `MORTGAGE` level as the reference category. This is because it is first value when sorted alphabetically. You can control this by changing the order of the factor levels. The package **forcats** helps with this effort. 
 
 How would we interpret this output? Since `MORTGAGE` is reference category, the intercept is effectively the estimated, average, interest rate for home owners with a mortgage. 
 

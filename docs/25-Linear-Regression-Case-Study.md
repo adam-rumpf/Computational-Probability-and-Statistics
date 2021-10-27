@@ -127,7 +127,7 @@ ggplot(hfi,aes(x=pf_expression_control,y=pf_score))+
 <p class="caption">(\#fig:scat252-fig)A scatterplot of personal freedom versus expression control using the ggplot2 package.</p>
 </div>
 
-Figures \@ref(fig:scat251-fig) and \@ref(fig:scat252-fig) are both scatterplots, we included both to demonstrate both the `ggformula` and `ggplot2` packages. In this figures, the relationship does look linear. We should be uncomfortable using the model at the end points. That is because there are less points at the edge and and linear estimation has larger variance at the endpoints, the predictions at the endpoints is more suspect. 
+Figures \@ref(fig:scat251-fig) and \@ref(fig:scat252-fig) are both scatterplots, we included both to demonstrate both the **ggformula** and **ggplot2* packages. In this figures, the relationship does look linear. We should be uncomfortable using the model at the end points. That is because there are less points at the edge and and linear estimation has larger variance at the endpoints, the predictions at the endpoints is more suspect. 
 
 > **Exercise**  
 The relationship looks linear, quantify the strength of the
@@ -287,7 +287,7 @@ m1 <- lm(pf_score ~ pf_expression_control, data = hfi_sub)
 ```
 
 The first argument in the function `lm` is a formula that takes the form `y ~ x`. Here it can be read that we want to make a linear model of `pf_score` as a function of `pf_expression_control`. The second argument specifies
-that `R` should look in the `hfi_sub` data frame to find the two variables. This should be familiar to us since we have been doing this when we used the `mosaic` package.
+that `R` should look in the `hfi_sub` data frame to find the two variables. This should be familiar to us since we have been doing this when we used the **mosaic** package.
 
 The output of `lm` is an object that contains all of the information we need about the linear model that was just fit. We can access this information using the `summary()` function.
 
@@ -438,7 +438,7 @@ The residual is:
 
 We underestimated the actual value.
 
-Another way to do this is to use the `broom` package.
+Another way to do this is to use the **broom** package.
 
 
 ```r
@@ -543,7 +543,7 @@ This case study introduced simple linear regression. We look at the criteria to 
 
 1. HFI   
 
-Choose another freedom variable and a variable you think would strongly correlate with it. The `openintro` package contains the data set `hfi`. Type `?openintro::hfi` in the Console window in `RStudio` to learn more about the variables. 
+Choose another freedom variable and a variable you think would strongly correlate with it. The **openintro** package contains the data set `hfi`. Type `?openintro::hfi` in the Console window in `RStudio` to learn more about the variables. 
     
 a. Produce a scatterplot of the two variables.  
 b. Quantify the strength of the relationship with the correlation coefficient.  

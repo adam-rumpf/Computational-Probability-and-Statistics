@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -919,7 +919,7 @@ Figure 26.2: An illustration of the least squares method.
 </div>
 <div id="possum-example" class="section level3" number="26.2.2">
 <h3><span class="header-section-number">26.2.2</span> Possum example</h3>
-<p>We will let <code>R</code> do the heavy work of minimizing the sum of squares. The function is <code>lm()</code> as we learned in the case study. This function needs a formula and data for input. The formula notation should be easy for us since we have worked with formulas so much in the <code>mosaic</code> package.</p>
+<p>We will let <code>R</code> do the heavy work of minimizing the sum of squares. The function is <code>lm()</code> as we learned in the case study. This function needs a formula and data for input. The formula notation should be easy for us since we have worked with formulas so much in the <strong>mosaic</strong> package.</p>
 <p>First create the model:</p>
 <div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="LRBASICS.html#cb810-1" aria-hidden="true" tabindex="-1"></a>poss_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(head_l<span class="sc">~</span>total_l,<span class="at">data=</span>possum)</span></code></pre></div>
 <p>The output of the model object is minimal with just the estimated slope and intercept.</p>
@@ -1028,7 +1028,7 @@ April 6th, 2010<a href="#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></
 ## F-statistic: 93.26 on 1 and 102 DF,  p-value: 4.681e-16</code></pre>
 <p>The first line repeats the model formula. The second line is a descriptive summary of the residuals, plots of the residuals are more useful than this summary. We then have a table of the model fit. The first column of numbers provides estimates for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, respectively. For the next columns, we’ll describe the meaning of the columns using the second row, which corresponds to information about the slope estimate. Again, the first column provides the point estimate for <span class="math inline">\(\beta_1\)</span>. The second column is a standard error for this point estimate. The third column is a <span class="math inline">\(t\)</span> test statistic for the null hypothesis that <span class="math inline">\(\beta_1 = 0\)</span>: <span class="math inline">\(T=9.657\)</span>. The last column is the p-value for the <span class="math inline">\(t\)</span> test statistic for the null hypothesis <span class="math inline">\(\beta_1=0\)</span> and a two-sided alternative hypothesis. We will get into more of these details in the next lessons.</p>
 <p>The row with the residual standard error is an estimate of the unexplained variance. The next rows give a summary of the model fit and we will discuss in the next lessons.</p>
-<p>In the <code>tidyverse</code> we may want to have the table above in a <code>tibble</code>. The <code>broom</code> package, which we have seen before, helps with this effort.</p>
+<p>In the <code>tidyverse</code> we may want to have the table above in a <code>tibble</code>. The <strong>broom</strong> package, which we have seen before, helps with this effort.</p>
 <div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="LRBASICS.html#cb822-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
 <div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="LRBASICS.html#cb823-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(poss_mod)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5

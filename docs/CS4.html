@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -881,7 +881,7 @@ Figure 25.1: A scatterplot of personal freedom versus expression control using t
 Figure 25.2: A scatterplot of personal freedom versus expression control using the ggplot2 package.
 </p>
 </div>
-<p>Figures <a href="CS4.html#fig:scat251-fig">25.1</a> and <a href="CS4.html#fig:scat252-fig">25.2</a> are both scatterplots, we included both to demonstrate both the <code>ggformula</code> and <code>ggplot2</code> packages. In this figures, the relationship does look linear. We should be uncomfortable using the model at the end points. That is because there are less points at the edge and and linear estimation has larger variance at the endpoints, the predictions at the endpoints is more suspect.</p>
+<p>Figures <a href="CS4.html#fig:scat251-fig">25.1</a> and <a href="CS4.html#fig:scat252-fig">25.2</a> are both scatterplots, we included both to demonstrate both the <strong>ggformula</strong> and **ggplot2* packages. In this figures, the relationship does look linear. We should be uncomfortable using the model at the end points. That is because there are less points at the edge and and linear estimation has larger variance at the endpoints, the predictions at the endpoints is more suspect.</p>
 <blockquote>
 <p><strong>Exercise</strong><br />
 The relationship looks linear, quantify the strength of the
@@ -1002,7 +1002,7 @@ Using <code>plot_ss</code>, choose a line that does a good job of minimizing the
 regression line).</p>
 <div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="CS4.html#cb785-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pf_score <span class="sc">~</span> pf_expression_control, <span class="at">data =</span> hfi_sub)</span></code></pre></div>
 <p>The first argument in the function <code>lm</code> is a formula that takes the form <code>y ~ x</code>. Here it can be read that we want to make a linear model of <code>pf_score</code> as a function of <code>pf_expression_control</code>. The second argument specifies
-that <code>R</code> should look in the <code>hfi_sub</code> data frame to find the two variables. This should be familiar to us since we have been doing this when we used the <code>mosaic</code> package.</p>
+that <code>R</code> should look in the <code>hfi_sub</code> data frame to find the two variables. This should be familiar to us since we have been doing this when we used the <strong>mosaic</strong> package.</p>
 <p>The output of <code>lm</code> is an object that contains all of the information we need about the linear model that was just fit. We can access this information using the <code>summary()</code> function.</p>
 <div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="CS4.html#cb786-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
@@ -1100,7 +1100,7 @@ If someone saw the least squares regression line and not the actual data, how wo
 <div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="CS4.html#cb796-1" aria-hidden="true" tabindex="-1"></a><span class="fl">8.628272</span> <span class="sc">-</span> <span class="fl">7.861402</span></span></code></pre></div>
 <pre><code>## [1] 0.76687</code></pre>
 <p>We underestimated the actual value.</p>
-<p>Another way to do this is to use the <code>broom</code> package.</p>
+<p>Another way to do this is to use the <strong>broom</strong> package.</p>
 <div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="CS4.html#cb798-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
 <div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="CS4.html#cb799-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(m1) <span class="sc">%&gt;%</span></span>
 <span id="cb799-2"><a href="CS4.html#cb799-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(pf_expression_control<span class="sc">==</span><span class="fl">6.75</span>)</span></code></pre></div>
@@ -1179,7 +1179,7 @@ Based on the residuals vs. fitted plot, does the constant variability condition
 <ol style="list-style-type: decimal">
 <li>HFI</li>
 </ol>
-<p>Choose another freedom variable and a variable you think would strongly correlate with it. The <code>openintro</code> package contains the data set <code>hfi</code>. Type <code>?openintro::hfi</code> in the Console window in <code>RStudio</code> to learn more about the variables.</p>
+<p>Choose another freedom variable and a variable you think would strongly correlate with it. The <strong>openintro</strong> package contains the data set <code>hfi</code>. Type <code>?openintro::hfi</code> in the Console window in <code>RStudio</code> to learn more about the variables.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Produce a scatterplot of the two variables.<br />
 </li>

@@ -71,7 +71,7 @@ a package can be used, it must be installed on the computer (once per computer o
 
 In summary, `R` has packages that can be downloaded and installed from online repositories such as CRAN. When you install a package, which only needs to be done once per computer or account, in `R` all it is doing is placing the source code in a library folder designated during the installation of `R`. Packages are typically collections of functions and variables that are specific to a certain task or subject matter. 
 
-For example, to install the mosaic package, enter:
+For example, to install the **mosaic** package, enter:
 
 ```
 install.packages("mosaic") # fetch package from CRAN
@@ -79,7 +79,7 @@ install.packages("mosaic") # fetch package from CRAN
 
 In RStudio there is a *Packages* tab that makes it easy to add and maintain packages.
 
-To use a package in a session, we must load it which makes it available to the current session only. When you start `R` again, you will have to load packages again. The command `library()` with the package name supplied as the argument is all that is needed. For this session, we will load `tidyverse` and `mosaic`. Note: the box below is executing the `R` commands, this is known as reproducible research since you can see the code and then you can run or modify as you need.
+To use a package in a session, we must load it which makes it available to the current session only. When you start `R` again, you will have to load packages again. The command `library()` with the package name supplied as the argument is all that is needed. For this session, we will load **tidyverse** and **mosaic**. Note: the box below is executing the `R` commands, this is known as reproducible research since you can see the code and then you can run or modify as you need.
 
 
 ```r
@@ -171,7 +171,7 @@ inspect(stent_study)
 ```
 
 
-To keep things simple we will only look at the `outcome30` variable in this case study. We will summarize the data in a table. Later in the course, we will learn to do this using the `tidy` package; for now we use the `mosaic` package. This package makes use of the modeling formula that you will use extensively later in this course and in Math 378.
+To keep things simple we will only look at the `outcome30` variable in this case study. We will summarize the data in a table. Later in the course, we will learn to do this using the **tidy** package; for now we use the **mosaic** package. This package makes use of the modeling formula that you will use extensively later in this course and in Math 378.
 
 We want to summarize the data by making a table. In `mosaic` this is the `tally()` function. Before using this function, we have to understand the basic formula notation that `mosaic` uses. The basic format is:
 
@@ -238,7 +238,7 @@ We can compute summary statistics from the table. A **summary statistic** is a s
 
 It is often important to visualize the data. The table is a type of visualization but in this section we will introduce a graphical method called bar charts.
 
-We will use the [**ggformula**](https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html) package to visualize. It is a wrapper to the `ggplot2` package which is becoming the industry standard for generating professional graphics. However, its interface is difficult to learn and we will ease into by using `ggformula` which makes use of the formula notation introduced above. The **ggformula** package was loaded when we loaded **mosaic**.^[https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html]
+We will use the [**ggformula**](https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html) package to visualize. It is a wrapper to the **ggplot2** package which is becoming the industry standard for generating professional graphics. However, its interface is difficult to learn and we will ease into by using `ggformula` which makes use of the formula notation introduced above. The **ggformula** package was loaded when we loaded `mosaic`.^[https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html]
 
 To generate a basic graphic, we need to ask ourselves what information we are trying to see, what particular type of graph is best, what corresponding `R` function to use, and what information that `R` function needs in order to build a plot. For categorical data we want a bar chart and the `R` function `gf_bar()` needs the data object and the variable(s) of interest.
 

@@ -321,7 +321,7 @@ summary(mario_mod2)
 
 Examining the **p-value** associated with the coefficient for `stock_photo`, we can see that it is significant. Thus we reject the null hypothesis that the coefficient is zero. There is a relationship between `cond` and `stock_photo`, as we found with the Fisher's test.
 
-We can use the `broom` package to summarize the output and generate model fits.
+We can use the **broom** package to summarize the output and generate model fits.
 
 
 ```r
@@ -850,7 +850,7 @@ The assumptions for logistic regression and the diagnostic tools are similar to 
 
 ## Confidence intervals  
 
-In this section we will generate confidence intervals. This section is experimental since we are not sure how `do()` from the `mosaic` package will work with the `glm()` function, but let's experiment.  
+In this section we will generate confidence intervals. This section is experimental since we are not sure how `do()` from the **mosaic** package will work with the `glm()` function, but let's experiment.  
 
 ### Confidence intervals for a parameter
 
@@ -925,7 +925,7 @@ do(1)*glm(cond=="new"~stock_photo+total_pr,
 
 ```
 ##   Intercept stock_photoyes  total_pr .row .index
-## 1 -38.64549       22.45673 0.3340849    1      1
+## 1 -15.98062       5.108415 0.2319267    1      1
 ```
 
 Again, it looks like what we expect. Now let's bootstrap the coefficients and summarize the results.

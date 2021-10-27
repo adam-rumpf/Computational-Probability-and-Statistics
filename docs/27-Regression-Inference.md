@@ -312,7 +312,7 @@ We reject $H_0$ in favor of $H_A$ because the data provide strong evidence that 
 
 The computer software uses zero in the null hypothesis, if you wanted to test another value of the slope then you would have to do the calculations step by step like we did above.
 
-By the way, this was not a `tidy` way to do the calculation. The `broom` package makes it easier to use `tidy` ideas on the regression model. We used these ideas in the last lesson.
+By the way, this was not a `tidy` way to do the calculation. The **broom** package makes it easier to use `tidy` ideas on the regression model. We used these ideas in the last lesson.
 
 As a reminder:
 
