@@ -757,8 +757,8 @@ a. Using the MLB from the reading, subset on `IF` and `OF`.
 b. Create a side-by-side boxplot.  
 
 The hypotheses are:  
-$H_0$: $\sigma^2_{IF}=\sigma^2{OF}$. There is no difference in the variance of on base percentage for infielders and outfielders.   
-$H_A$: $\sigma^2_{IF}\neq \sigma^2{OF}$. There is a difference in variances.
+$H_0$: $\sigma^2_{IF}=\sigma^2_{OF}$. There is no difference in the variance of on base percentage for infielders and outfielders.   
+$H_A$: $\sigma^2_{IF}\neq \sigma^2_{OF}$. There is a difference in variances.
  
 c. Use the differences in sample standard deviations as your test statistic. Using a permutation test, find the p-value and discuss your decision.   
 d. Create a bootstrap distribution of the differences in sample standard deviations, and report a 95\% confidence interval. Compare with part d.
