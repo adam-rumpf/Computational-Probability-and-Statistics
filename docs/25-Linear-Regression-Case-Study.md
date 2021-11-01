@@ -19,7 +19,7 @@ The Human Freedom Index is a report that attempts to summarize the idea of "free
 
 In this case study, you'll be analyzing data from Human Freedom Index reports from 2008-2016. Your aim will be to summarize a few of the relationships within the data both graphically and numerically in order to find which variables can help tell a story about freedom. This will be done using the tool of regression.
 
-Again, like our previous case studies, this lesson will introduce many of the ideas of the block. Don't worry if they seem difficult and you feel overwhelmed a bit, we will come back to the ideas in the following lessons.
+Again, like our previous case studies, this chapter will introduce many of the ideas of the block. Don't worry if they seem difficult and you feel overwhelmed a bit, we will come back to the ideas in the following chapters.
 
 ### Load packages
 
@@ -127,7 +127,7 @@ ggplot(hfi,aes(x=pf_expression_control,y=pf_score))+
 <p class="caption">(\#fig:scat252-fig)A scatterplot of personal freedom versus expression control using the ggplot2 package.</p>
 </div>
 
-Figures \@ref(fig:scat251-fig) and \@ref(fig:scat252-fig) are both scatterplots, we included both to demonstrate both the **ggformula** and **ggplot2* packages. In this figures, the relationship does look linear. We should be uncomfortable using the model at the end points. That is because there are less points at the edge and and linear estimation has larger variance at the endpoints, the predictions at the endpoints is more suspect. 
+Figures \@ref(fig:scat251-fig) and \@ref(fig:scat252-fig) are both scatterplots, we included both to demonstrate both the **ggformula** and **ggplot2** packages. In these figures, the relationship does look linear. Although, we should be uncomfortable using the model at the end points. That is because there are less points at the edge and and linear estimation has larger variance at the endpoints, the predictions at the endpoints is more suspect. 
 
 > **Exercise**  
 The relationship looks linear, quantify the strength of the
@@ -148,7 +148,7 @@ hfi %>%
 
 The sample correlation coefficient, indicates a strong positive linear relationship between the variables. 
 
-Note that we set the `use` argument to "complete.obs" since there are some observations with missing values, NA.
+Note that we set the `use` argument to "complete.obs" since there are some observations with missing values, `NA`.
 
 
 ## Sum of squared residuals
@@ -179,10 +179,10 @@ hfi_sub <- hfi %>%
   slice_sample(n=1)
 ```
 
-We used the function `slice_sample()` to ensure we have unique values of `pf_expression_control` is our sample.
+We used the function `slice_sample()` to ensure we have unique values of `pf_expression_control` in our sample.
 
 >**Exercise**  
-In your `R` console, run the code above to create the object `hfi_sub`. You are going to have to load packages and read in the `hfi` data set. Then execute the next set of code. Pick two locations in the plot to create a line. Record the sum of squares.
+In your `R` console, run the code above to create the object `hfi_sub`. You are going to have to load packages and read in the `hfi` data set. Then execute the next lines of code. Pick two locations in the plot to create a line. Record the sum of squares.
 
 First, run this code chunk to create a function `plot_ss()` that you will use next.
 
@@ -322,7 +322,7 @@ column displays the linear model's y-intercept and the coefficient of `pf_expres
 linear model:
 
 $$
-  \hat{pf\_score} = 5.02721 + 0.41988 \times pf\_expression\_control
+  \hat{\text{pf_score}} = 5.02721 + 0.41988 \times \text{pf_expression_control}
 $$
 
 At least these are the values we got on our machine using the *seed* provided. Yours may differ slightly. One last piece of information we will discuss from the summary output is the `Multiple R-squared`, or more simply, $R^2$. The $R^2$ value represents the proportion of variability in the response variable that is explained by the explanatory variable. For this model, 72.48% of the variability in `pf_score` is explained by `pr_expression_control`.
@@ -362,18 +362,19 @@ summary(m2)
 ```
 
 $$
-  \hat{hf\_score} = 5.45660 + 0.30707 \times pf\_expression\_control
+  \hat{\text{hf_score}} = 5.45660 + 0.30707 \times \text{pf_expression_control}
 $$
 As the political pressure increases by one unit, the **average** human freedom score increases by 0.307.
 
 ## Prediction and prediction errors
 
-Let's create a scatterplot with the least squares line for `m1` laid on top, Figure \@ref(fig:reg-with-line).
+Let's create a scatterplot with the least squares line for `m1`, our first model, laid on top, Figure \@ref(fig:reg-with-line).
 
 
 ```r
 ggplot(data = hfi_sub, aes(x = pf_expression_control, y = pf_score)) +
   geom_point() +
+#  geom_lm(color="black") +
   stat_smooth(method = "lm", se = FALSE,color="black") +
   theme_bw()+
   labs(title="Personal freedom score versus Expression control",
@@ -386,7 +387,7 @@ ggplot(data = hfi_sub, aes(x = pf_expression_control, y = pf_score)) +
 <p class="caption">(\#fig:reg-with-line)Scatterplot of personal expression control and personal freedom score.</p>
 </div>
 
-Here, we are literally adding a layer on top of our plot. The  `geom_smooth()` function creates the line by fitting a linear model. It can also show us the standard error `se`
+Here, we are literally adding a layer on top of our plot. The  `stat_smooth()` function creates the line by fitting a linear model, we could use `geom_lm()` as well. It can also show us the standard error `se`
 associated with our line, but we'll suppress that for now.
 
 This line can be used to predict $y$ at any value of $x$. When predictions are made for values of $x$ that are beyond the range of the observed data, it is referred to as *extrapolation* and is not usually recommended. However, 
@@ -407,7 +408,7 @@ predict(m1,newdata=data.frame(pf_expression_control=6.75))
 ## 7.861402
 ```
 
-We thus predict a value of 7.86 for the `pf_score`.
+We thus predict a value of 7.86 for the average `pf_score`.
 
 The observed value is 8.628272.
 
@@ -460,12 +461,13 @@ augment(m1) %>%
 
 ## Model diagnostics
 
-To assess whether the linear model is reliable, we need to check for 
+To assess whether the linear model is reliable, we need to check for  
+
 1. linearity,   
 2. nearly normal residuals, and  
 3. constant variability.
 
-**Linearity**: You already checked if the relationship between `pf_score` and `pf_expression_control' is linear using a scatterplot. We should also verify this condition with a plot of the residuals vs. fitted (predicted) values, Figure \@ref(fig:residuals).
+**Linearity**: You already checked if the relationship between `pf_score` and `pf_expression_control` is linear using a scatterplot. We should also verify this condition with a plot of the residuals vs. fitted (predicted) values, Figure \@ref(fig:residuals).
 
 
 ```r
@@ -518,10 +520,10 @@ ggplot(data = m1, aes(sample = .resid)) +
 <p class="caption">(\#fig:qq-res)The quantile-quantile residual plot used to assess the normality assumption.</p>
 </div>
 
-Note that the syntax for making a normal probability plot is a bit different than what you're used to seeing: we set `sample` equal to the residuals instead of `x`, and we set a statistical method `qq`, which stands for"quantile-quantile",
+Note that the syntax for making a normal probability plot is a bit different than what you're used to seeing: we set `sample` equal to the residuals instead of `x`, and we set a statistical method `qq`, which stands for "quantile-quantile",
 another name commonly used for normal probability plots. 
 
-It is a little difficult at first to understand how the `qq` plot indicated that the distribution was skewed to the left. The points indicate the quantile from the sample, standardized to have mean zero and standard deviation one, plotted against the same quantiles from a standard normal. It the sample matched a standard normal the points would align on the 45-degree line. From the plot, we see that has the theoretical quantile get larger, further from zero, the sample do not. That is why the trajectory of the points in the upper right looks flat, below the 45-degree line. Thus the distribution is compressed on the right making it skewed to the left. 
+It is a little difficult at first to understand how the `qq` plot indicated that the distribution was skewed to the left. The points indicate the quantile from the sample, standardized to have mean zero and standard deviation one, plotted against the same quantiles from a standard normal. It the sample matched a standard normal the points would align on the 45-degree line. From the plot, we see that as the theoretical quantile get larger, further from zero, the sample do not. That is why the trajectory of the points in the upper right looks flat, below the 45-degree line. Thus the distribution is compressed on the right making it skewed to the left. 
 
 > **Exercise**: 
 Based on the histogram and the normal probability plot, does the nearly normal residuals condition appear to be met?
