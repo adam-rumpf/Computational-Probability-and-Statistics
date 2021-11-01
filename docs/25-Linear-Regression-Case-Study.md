@@ -464,8 +464,9 @@ augment(m1) %>%
 To assess whether the linear model is reliable, we need to check for  
 
 1. linearity,   
-2. nearly normal residuals, and  
-3. constant variability.
+2. independence, 
+3. nearly normal residuals, and  
+4. constant variability.
 
 **Linearity**: You already checked if the relationship between `pf_score` and `pf_expression_control` is linear using a scatterplot. We should also verify this condition with a plot of the residuals vs. fitted (predicted) values, Figure \@ref(fig:residuals).
 
@@ -489,6 +490,8 @@ Notice here that `m1` can also serve as a data set because stored within it are 
 Is there any apparent pattern in the residuals plot? What does this indicate about the linearity of the relationship between the two variables?  
 
 The width is constant and there is no trend in the data. The linearity assumption is not bad.
+
+**Independence**: This is difficult to check with residuals and depends on how the data was collected. 
 
 **Nearly normal residuals**: To check this condition, we can look at a histogram, Figure \@ref(fig:hist-res).
 

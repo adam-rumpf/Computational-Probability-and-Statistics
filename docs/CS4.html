@@ -1116,6 +1116,7 @@ If someone saw the least squares regression line and not the actual data, how wo
 <ol style="list-style-type: decimal">
 <li>linearity,<br />
 </li>
+<li>independence,</li>
 <li>nearly normal residuals, and<br />
 </li>
 <li>constant variability.</li>
@@ -1138,6 +1139,7 @@ Figure 25.5: Scatterplot of residuals and fitted values used to assess the assum
 Is there any apparent pattern in the residuals plot? What does this indicate about the linearity of the relationship between the two variables?</p>
 </blockquote>
 <p>The width is constant and there is no trend in the data. The linearity assumption is not bad.</p>
+<p><strong>Independence</strong>: This is difficult to check with residuals and depends on how the data was collected.</p>
 <p><strong>Nearly normal residuals</strong>: To check this condition, we can look at a histogram, Figure <a href="CS4.html#fig:hist-res">25.6</a>.</p>
 <div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="CS4.html#cb802-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> m1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
 <span id="cb802-2"><a href="CS4.html#cb802-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">4</span>,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
