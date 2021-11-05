@@ -65,7 +65,7 @@ These notes make use of the following packages in `R`: **knitr** [@R-knitr], **r
 
 ## Acknowledgements 
 
-We have been lucky to have numerous open sources to help facilitate this work.  
+We have been lucky to have numerous open sources to help facilitate this work.  Thank you to thus who helped to correct mistakes to include Skyler Royse.
 
 This book was written using the **bookdown** package [@R-bookdown].
 
