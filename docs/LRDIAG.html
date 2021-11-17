@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-11-15" />
+<meta name="date" content="2021-11-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -35,7 +35,7 @@
   
 <link rel="prev" href="LRINF.html"/>
 <link rel="next" href="LRSIM.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -826,7 +826,7 @@ div.csl-indent {
 <p>You may have noticed some other information that appeared in the summary of our model. We discussed the output in a previous chapter but let’s go a little more in depth.</p>
 <div id="residual-standard-error" class="section level3" number="28.3.1">
 <h3><span class="header-section-number">28.3.1</span> Residual Standard Error</h3>
-<p>The “residual standard error” is the estimate of <span class="math inline">\(\sigma\)</span>, the unexplained variance in our response. In our example, this turned out to be 78.26. If the assumption of normality is valid, we would expect the majority, 68%, of the observed values at a given input to be within <span class="math inline">\(\pm 78.26\)</span> of the mean value.</p>
+<p>The “residual standard error” is the estimate of <span class="math inline">\(\sigma\)</span>, the unexplained variance in our response. In our example, this turned out to be 78.26. If the assumptions of normality and constant variance are valid, we would expect the majority, 68%, of the observed values at a given input to be within <span class="math inline">\(\pm 78.26\)</span> of the mean value.</p>
 <p>If we want to extract just this value from the model object, first recognize that <code>summary(my.model)</code> is a list with several components:</p>
 <div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb865-1"><a href="LRDIAG.html#cb865-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">summary</span>(star_mod))</span></code></pre></div>
 <pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;     &quot;coefficients&quot; 
@@ -839,16 +839,16 @@ div.csl-indent {
 </div>
 <div id="r-squared" class="section level3" number="28.3.2">
 <h3><span class="header-section-number">28.3.2</span> R-squared</h3>
-<p>Another quantity that appears is <span class="math inline">\(R\)</span>-squared. <span class="math inline">\(R\)</span>-squared is one measure of goodness of fit. Essentially <span class="math inline">\(R\)</span>-squared is a ratio of variance (in the response) explained by the model to overall variance of the response. It helps to describe the decomposition of variance:</p>
+<p>Another quantity that appears is <span class="math inline">\(R\)</span>-squared, also know as the coefficient of determination. <span class="math inline">\(R\)</span>-squared is one measure of goodness of fit. Essentially <span class="math inline">\(R\)</span>-squared is a ratio of variance (in the response) explained by the model to overall variance of the response. It helps to describe the decomposition of variance:</p>
 <p><span class="math display">\[
 \underbrace{\sum_{i=1}^n (y_i-\bar{y})^2}_{SS_{\text{Total}}} = \underbrace{\sum_{i=1}^n (\hat{y}_i-\bar y)^2}_{SS_{\text{Regression}}}+\underbrace{\sum_{i=1}^n(y_i-\hat{y}_i)^2}_{SS_{\text{Error}}}
 \]</span></p>
-<p>In other words, the overall variation in <span class="math inline">\(y\)</span> can be separated into two parts: variation due to the linear relationship between <span class="math inline">\(y\)</span> and the predictor variable(s), called <span class="math inline">\(SS_\text{Regression}\)</span>, and residual variation (due to random scatter or perhaps a poorly chosen model), called <span class="math inline">\(SS_\text{Error}\)</span>.</p>
+<p>In other words, the overall variation in <span class="math inline">\(y\)</span> can be separated into two parts: variation due to the linear relationship between <span class="math inline">\(y\)</span> and the predictor variable(s), called <span class="math inline">\(SS_\text{Regression}\)</span>, and residual variation (due to random scatter or perhaps a poorly chosen model), called <span class="math inline">\(SS_\text{Error}\)</span>. Note: <span class="math inline">\(SS_\text{Error}\)</span> is used to estimate residual standard error in the previous section.<a href="#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a></p>
 <p><span class="math inline">\(R\)</span>-squared simply measures the ratio between <span class="math inline">\(SS_\text{Regression}\)</span> and <span class="math inline">\(SS_\text{Total}\)</span>. A common definition of <span class="math inline">\(R\)</span>-squared is the proportion of overall variation in the response that is explained by the linear model. <span class="math inline">\(R\)</span>-squared can be between 0 and 1. Values of <span class="math inline">\(R\)</span>-squared close to 1 indicate a tight fit (little scatter) around the estimated regression line. Value close to 0 indicate the opposite (large remaining scatter).</p>
 <p>We can obtain <span class="math inline">\(R\)</span>-squared “by hand” or by using the output of the <code>lm()</code> function:</p>
 <div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="LRDIAG.html#cb869-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.4556237</code></pre>
-<p>For simple linear regression, <span class="math inline">\(R\)</span>-squared is related to <strong>correlation</strong>. We can compute the correlation using a formula, just as we did with the sample mean and standard deviation. However, this formula is rather complex,<a href="#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a> so we let <code>R</code> do the heavy lifting for us.</p>
+<p>For simple linear regression, <span class="math inline">\(R\)</span>-squared is related to <strong>correlation</strong>. We can compute the correlation using a formula, just as we did with the sample mean and standard deviation. However, this formula is rather complex,<a href="#fn94" class="footnote-ref" id="fnref94"><sup>94</sup></a> so we let <code>R</code> do the heavy lifting for us.</p>
 <div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb871-1"><a href="LRDIAG.html#cb871-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">%&gt;%</span></span>
 <span id="cb871-2"><a href="LRDIAG.html#cb871-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">correlation=</span><span class="fu">cor</span>(carb,calories),<span class="at">correlation_squared=</span>correlation<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
@@ -864,7 +864,7 @@ Figure 28.1: Scatterplots demonstrating different correlations.
 </div>
 <blockquote>
 <p><strong>Exercise</strong><br />
-If a linear model has a very strong negative relationship with a correlation of -0.97, how much of the variation in the response is explained by the explanatory variable?<a href="#fn94" class="footnote-ref" id="fnref94"><sup>94</sup></a></p>
+If a linear model has a very strong negative relationship with a correlation of -0.97, how much of the variation in the response is explained by the explanatory variable?<a href="#fn95" class="footnote-ref" id="fnref95"><sup>95</sup></a></p>
 </blockquote>
 <p>Note that one of the components of <code>summary(lm())</code> function is <code>adj.r.squared</code>. This is a value of <span class="math inline">\(R\)</span>-squared adjusted for number of predictors. This idea is covered more in depth in a machine learning course.</p>
 </div>
@@ -887,7 +887,7 @@ If a linear model has a very strong negative relationship with a correlation of 
 </div>
 <div id="regression-diagnostics" class="section level2" number="28.4">
 <h2><span class="header-section-number">28.4</span> Regression diagnostics</h2>
-<p>Finally, we can use the “lm” object to check the assumptions of the model. We have discussed the assumptions before but in this chapter we will use <code>R</code> to generate visual checks. There are also numeric diagnostic measures.</p>
+<p>Finally, we can use the <code>lm</code> object to check the assumptions of the model. We have discussed the assumptions before but in this chapter we will use <code>R</code> to generate visual checks. There are also numeric diagnostic measures.</p>
 <p>There are several potential problems with a regression model:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Assumptions about the error structure</strong>. We assume:<br />
@@ -922,7 +922,7 @@ If a linear model has a very strong negative relationship with a correlation of 
 </li>
 <li>and a plot of Cook’s distances against leverage/(1-leverage).</li>
 </ul>
-<p>By default, the first three and 5 are provided by applying <code>plot()</code> to an “lm” object. To obtain all four at once, simply use <code>plot(my.model)</code>, Figure <a href="LRDIAG.html#fig:diag281-fig">28.2</a>.</p>
+<p>By default, the first three and the fifth are provided by applying <code>plot()</code> to an “lm” object. To obtain all four at once, simply use <code>plot(my.model)</code> at the command line, Figure <a href="LRDIAG.html#fig:diag281-fig">28.2</a>.</p>
 <div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb875-1"><a href="LRDIAG.html#cb875-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod)</span></code></pre></div>
 <div class="figure"><span id="fig:diag281-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-1.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-2.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-3.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-4.png" alt="Regression diagnostic plots." width="50%" />
@@ -934,7 +934,7 @@ Figure 28.2: Regression diagnostic plots.
 </div>
 <div id="residuals-vs-fitted" class="section level3" number="28.4.2">
 <h3><span class="header-section-number">28.4.2</span> Residuals vs Fitted</h3>
-<p>By providing the <code>which</code> option, we can select the plot we want, Figure <a href="LRDIAG.html#fig:diag282-fig">28.3</a> is the first diagnostic plot.</p>
+<p>By providing a number in the <code>which</code> option, we can select the plot we want, Figure <a href="LRDIAG.html#fig:diag282-fig">28.3</a> is the first diagnostic plot.</p>
 <div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="LRDIAG.html#cb876-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(star_mod,<span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:diag282-fig"></span>
 <img src="28-Regression-Diagnostics_files/figure-html/diag282-fig-1.png" alt="A diagnostic residual plot." width="672" />
@@ -942,7 +942,7 @@ Figure 28.2: Regression diagnostic plots.
 Figure 28.3: A diagnostic residual plot.
 </p>
 </div>
-<p>This plot assesses linearity of the model and homoscedasticity (constant variance). The red line is a smoothed estimate of the fitted values versus the residuals. Ideally, the red line should be centered around the dashed horizontal line. This would indicate that a linear fit is appropriate. Furthermore, the scatter around the dashed line should be relatively constant across the plot, homoscedasticity. In this case, it looks like there is some minor concern over linearity and non-constant error variance. We noted this earlier with the cluster of points in the lower left hand corner of the scatterplot.</p>
+<p>This plot assesses linearity of the model and homoscedasticity (constant variance). The red line is a smoothed estimate of the fitted values versus the residuals. Ideally, the red line should coincide with the dashed horizontal line and the residuals should be centered around this dashed line. This would indicate that a linear fit is appropriate. Furthermore, the scatter around the dashed line should be relatively constant across the plot, homoscedasticity. In this case, it looks like there is some minor concern over linearity and non-constant error variance. We noted this earlier with the cluster of points in the lower left hand corner of the scatterplot.</p>
 <p>Note: the points that are labeled are points with a high residual value. They are extreme. We will discuss outliers and leverage points shortly.</p>
 </div>
 <div id="normal-q-q-plot" class="section level3" number="28.4.3">
@@ -955,7 +955,7 @@ Figure 28.3: A diagnostic residual plot.
 Figure 28.4: The quantile-quantile plot for checking normality.
 </p>
 </div>
-<p>Along the <span class="math inline">\(y\)</span>-axis are the actual standardized residuals. Along the <span class="math inline">\(x\)</span>-axis is where those points should be if the residuals were actually normally distributed. Ideally, the dots should fall along the diagonal dashed line. In Figure <a href="LRDIAG.html#fig:diag283-fig">28.4</a>, it appears there is some skewness to the right. We can tell this because for the smaller residuals, they don’t increase as they should to match a normal distribution, the points are above the line. This is concerning.</p>
+<p>Along the <span class="math inline">\(y\)</span>-axis are the actual standardized residuals. Along the <span class="math inline">\(x\)</span>-axis is where those points should be if the residuals were actually normally distributed. Ideally, the dots should fall along the diagonal dashed line. In Figure <a href="LRDIAG.html#fig:diag283-fig">28.4</a>, it appears there is some skewness to the right or just longer tails than a normal distribution. We can tell this because for the smaller residuals, they don’t increase as they should to match a normal distribution, the points are above the line. This is concerning.</p>
 </div>
 <div id="scale-location-plot" class="section level3" number="28.4.4">
 <h3><span class="header-section-number">28.4.4</span> Scale-Location Plot</h3>
@@ -1070,12 +1070,13 @@ Figure 28.9: Homework problem 3.
 <div class="footnotes">
 <hr />
 <ol start="93">
-<li id="fn93"><p>Formally, we can compute the correlation for observations <span class="math inline">\((x_1, y_1)\)</span>, <span class="math inline">\((x_2, y_2)\)</span>, …, <span class="math inline">\((x_n, y_n)\)</span> using the formula
+<li id="fn93"><p><span class="math inline">\(\hat{\sigma}=\sqrt\frac{\sum_{i=1}^n(y_i-\hat{y}_i)^2}{\text{degrees of freedom}}\)</span><a href="LRDIAG.html#fnref93" class="footnote-back">↩︎</a></p></li>
+<li id="fn94"><p>Formally, we can compute the correlation for observations <span class="math inline">\((x_1, y_1)\)</span>, <span class="math inline">\((x_2, y_2)\)</span>, …, <span class="math inline">\((x_n, y_n)\)</span> using the formula
 <span class="math display">\[
 R = \frac{1}{n-1}\sum_{i=1}^{n} \frac{x_i-\bar{x}}{s_x}\frac{y_i-\bar{y}}{s_y}
 \]</span>
-where <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(\bar{y}\)</span>, <span class="math inline">\(s_x\)</span>, and <span class="math inline">\(s_y\)</span> are the sample means and standard deviations for each variable.<a href="LRDIAG.html#fnref93" class="footnote-back">↩︎</a></p></li>
-<li id="fn94"><p>About <span class="math inline">\(R^2 = (-0.97)^2 = 0.94\)</span> or 94% of the variation is explained by the linear model.<a href="LRDIAG.html#fnref94" class="footnote-back">↩︎</a></p></li>
+where <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(\bar{y}\)</span>, <span class="math inline">\(s_x\)</span>, and <span class="math inline">\(s_y\)</span> are the sample means and standard deviations for each variable.<a href="LRDIAG.html#fnref94" class="footnote-back">↩︎</a></p></li>
+<li id="fn95"><p>About <span class="math inline">\(R^2 = (-0.97)^2 = 0.94\)</span> or 94% of the variation is explained by the linear model.<a href="LRDIAG.html#fnref95" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

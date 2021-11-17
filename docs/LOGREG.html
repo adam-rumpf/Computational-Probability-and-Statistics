@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-11-15" />
+<meta name="date" content="2021-11-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -35,7 +35,7 @@
   
 <link rel="prev" href="LRMULTI.html"/>
 <link rel="next" href="references.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -797,7 +797,7 @@ div.csl-indent {
 <h2><span class="header-section-number">31.2</span> Logistic regression introduction</h2>
 <p>In this lesson we introduce <strong>logistic regression</strong> as a tool for building models when there is a categorical response variable with two levels. Logistic regression is a type of <strong>generalized linear model</strong> (GLM) for response variables where the assumptions of normally distributed errors is not appropriate. We are prepping you for advanced statistical models and machine learning, where we will explore predictive models of many different types of response variables including ones that don’t assume an underlying functional relationship between inputs and outputs. So cool!</p>
 <p>GLMs can be thought of as a two-stage modeling approach. We first model the response variable using a probability distribution, such as the binomial or Poisson distribution. Second, we model the parameter of the distribution using a collection of predictors and a special form of multiple regression.</p>
-<p>To explore and explain these ideas, we will again use the Ebay auctions of a video game called <strong>Mario Kart</strong> for the Nintendo Wii. Remember, the data set is in the file <code>mariokart.csv</code> and includes results from 141 auctions.<a href="#fn103" class="footnote-ref" id="fnref103"><sup>103</sup></a></p>
+<p>To explore and explain these ideas, we will again use the Ebay auctions of a video game called <strong>Mario Kart</strong> for the Nintendo Wii. Remember, the data set is in the file <code>mariokart.csv</code> and includes results from 141 auctions.<a href="#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a></p>
 <p>In this chapter, we want the outcome variable of interest to be game condition, <code>cond</code>. In Chapter <a href="LRMULTI.html#LRMULTI">30</a> we used the total price of an auction as the response. We are moving from a quantitative response to a binary qualitative variable. If we were only interested in determining if an association exists between the variables <code>cond</code> and <code>total_pr</code>, we could use linear regression with <code>total_pr</code> as the response. However, in this problem we want to predict game condition. We will start by reviewing some of the previous models and then introduce logistic regression. We will finish with a multiple logistic regression model, more than one predictor.</p>
 <div id="mario-kart-data" class="section level3" number="31.2.1">
 <h3><span class="header-section-number">31.2.1</span> Mario Kart data</h3>
@@ -896,7 +896,7 @@ div.csl-indent {
 ##   new   0.1111111 0.5238095
 ##   used  0.8888889 0.4761905
 ##   Total 1.0000000 1.0000000</code></pre>
-<p>We could analyze this by comparing the proportion of new condition games for each stock photo value using both randomization, empirical p-values, and the central limit theorem. We will just use an exact permutation test, **Fisher Exact Test."</p>
+<p>We could analyze this by comparing the proportion of new condition games for each stock photo value using both randomization, empirical p-values, and the central limit theorem. We will just use an exact permutation test, **Fisher Exact Test.”</p>
 <div class="sourceCode" id="cb1044"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1044-1"><a href="LOGREG.html#cb1044-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(<span class="fu">tally</span>(<span class="sc">~</span>cond<span class="sc">+</span>stock_photo,<span class="at">data=</span>mariokart))</span></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
@@ -1377,7 +1377,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <span id="cb1110-2"><a href="LOGREG.html#cb1110-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span><span class="fu">resample</span>(mariokart),</span>
 <span id="cb1110-3"><a href="LOGREG.html#cb1110-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
-## 1 -11.65326       2.006047 0.2023913    1      1</code></pre>
+## 1 -21.13461       4.806633 0.3439233    1      1</code></pre>
 <p>Again, it looks like what we expect. Now let’s bootstrap the coefficients and summarize the results.</p>
 <div class="sourceCode" id="cb1112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1112-1"><a href="LOGREG.html#cb1112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5011</span>)</span>
 <span id="cb1112-2"><a href="LOGREG.html#cb1112-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span>total_pr,</span>
@@ -1495,8 +1495,8 @@ Are there any outliers that are likely to have a very large influence on the log
 </div>
 <div class="footnotes">
 <hr />
-<ol start="103">
-<li id="fn103"><p>Diez DM, Barr CD, and etinkaya-Rundel M. 2012. <code>openintro</code>: OpenIntro data sets and supplemental functions. <a href="http://cran.r-project.org/web/packages/openintro" class="uri">http://cran.r-project.org/web/packages/openintro</a><a href="LOGREG.html#fnref103" class="footnote-back">↩︎</a></p></li>
+<ol start="104">
+<li id="fn104"><p>Diez DM, Barr CD, and etinkaya-Rundel M. 2012. <code>openintro</code>: OpenIntro data sets and supplemental functions. <a href="http://cran.r-project.org/web/packages/openintro" class="uri">http://cran.r-project.org/web/packages/openintro</a><a href="LOGREG.html#fnref104" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
