@@ -11,7 +11,7 @@
 
 ## Introduction
 
-In the last couple of lessons we examined how to perform inference for a simple linear regression model assuming the errors were independent normally distributed random variables. We examined diagnostic tools to check assumptions and look for outliers. In this lesson we will use the **bootstrap** to create confidence and prediction intervals.
+In the last couple of chapters we examined how to perform inference for a simple linear regression model assuming the errors were independent normally distributed random variables. We examined diagnostic tools to check assumptions and look for outliers. In this chapter we will use the **bootstrap** to create confidence and prediction intervals.
 
 There are at least two ways we can consider creating a bootstrap distribution for a linear model. We can easily fit a linear model to a resampled data set. But in some situations this may have undesirable features. Influential observations, for example, will appear duplicated in some resamples and be missing entirely from other resamples.  
 
@@ -30,7 +30,7 @@ Bootstrapping residuals corresponds to a designed experiment, where the $x$ valu
 
 ## Confidence intervals for parameters  
 
-To build a confidence interval for the slope parameter, we will resample the data or residuals and generate a new regression model. This process does not assume normality of the residuals. We will use functions from the **mosaic** package to complete this work. However, know that `tidymodels` and `purrr` are more sophisticated tools for doing this work.
+To build a confidence interval for the slope parameter, we will resample the data or residuals and generate a new regression model. This process does not assume normality of the residuals. We will use functions from the **mosaic** package to complete this work. However, know that **tidymodels** and **purrr** are more sophisticated tools for doing this work.
 
 ### Resampling  
 
@@ -131,7 +131,7 @@ head(results)
 ## 6  183.1159 3.549460 73.90153 0.3931691 48.59292     1    75    1      6
 ```
 
-With all this data in `results`, we can generate confidence intervals for the slope, $R$-squared ($R^2$), and $F$. Figure \@ref(fig:hist291-fig) is a histogram of slope.
+With all this data in `results`, we can generate confidence intervals for the slope, $R$-squared ($R^2$), and the $F$ statistic. Figure \@ref(fig:hist291-fig) is a histogram of slope values from resampling.
 
 
 ```r
@@ -383,7 +383,7 @@ results %>%
 ## 2.5% 385.2706 423.6689      0.95
 ```
 
-This is similar to the interval we found last lesson. We are 95% confident that the average calorie content for a menu item with 60 grams of carbohydrates is between 380.8 and 425.7.
+This is similar to the interval we found last chapter. We are 95% confident that the average calorie content for a menu item with 60 grams of carbohydrates is between 380.8 and 425.7.
 
 ### Prediction interval  
 
@@ -418,11 +418,11 @@ results %>%
 ## 2.5% 277.4886 577.0957      0.95
 ```
 
-This prediction interval appears to be biased. Thus generating a prediction interval is beyond the scope of this class.
+This prediction interval appears to be biased. Thus generating a prediction interval is beyond the scope of this book.  
 
 ## Categorical predictor  
 
-We want to finish up simple linear regression by discussing a categorical predictor. It changes our interpretation somewhat.
+We want to finish up simple linear regression by discussing a categorical predictor. It somewhat changes the interpretation of the regression model.
 
 Thus far, we have only discussed regression in the context of a quantitative, continuous, response AND a quantitative, continuous, predictor. We can build linear models with categorical predictor variables as well. 
 
@@ -571,7 +571,7 @@ summary(loan_mod)
 
 Note that by default, `R` set the `MORTGAGE` level as the reference category. This is because it is first value when sorted alphabetically. You can control this by changing the order of the factor levels. The package **forcats** helps with this effort. 
 
-How would we interpret this output? Since `MORTGAGE` is reference category, the intercept is effectively the estimated, average, interest rate for home owners with a mortgage. 
+How would we interpret this output? Since `MORTGAGE` is the reference category, the intercept is effectively the estimated, average, interest rate for home owners with a mortgage. 
 
 
 ```r

@@ -797,7 +797,7 @@ div.csl-indent {
 </div>
 <div id="introduction-5" class="section level2" number="29.2">
 <h2><span class="header-section-number">29.2</span> Introduction</h2>
-<p>In the last couple of lessons we examined how to perform inference for a simple linear regression model assuming the errors were independent normally distributed random variables. We examined diagnostic tools to check assumptions and look for outliers. In this lesson we will use the <strong>bootstrap</strong> to create confidence and prediction intervals.</p>
+<p>In the last couple of chapters we examined how to perform inference for a simple linear regression model assuming the errors were independent normally distributed random variables. We examined diagnostic tools to check assumptions and look for outliers. In this chapter we will use the <strong>bootstrap</strong> to create confidence and prediction intervals.</p>
 <p>There are at least two ways we can consider creating a bootstrap distribution for a linear model. We can easily fit a linear model to a resampled data set. But in some situations this may have undesirable features. Influential observations, for example, will appear duplicated in some resamples and be missing entirely from other resamples.</p>
 <p>Another option is to use “residual resampling.” In residual resampling, the new data set has all of the predictor values from the original data set and a new response is created by adding to the fitted function a resampled residual.</p>
 <p>In summary, suppose we have <span class="math inline">\(n\)</span> observations, each with <span class="math inline">\(Y\)</span> and some number of <span class="math inline">\(X\)</span>’s, with each observation stored as a row in a data set. The two basic procedures when bootstrapping regression are:<br />
@@ -810,7 +810,7 @@ The latter is a special case of a more general rule: sample <span class="math in
 </div>
 <div id="confidence-intervals-for-parameters" class="section level2" number="29.3">
 <h2><span class="header-section-number">29.3</span> Confidence intervals for parameters</h2>
-<p>To build a confidence interval for the slope parameter, we will resample the data or residuals and generate a new regression model. This process does not assume normality of the residuals. We will use functions from the <strong>mosaic</strong> package to complete this work. However, know that <code>tidymodels</code> and <code>purrr</code> are more sophisticated tools for doing this work.</p>
+<p>To build a confidence interval for the slope parameter, we will resample the data or residuals and generate a new regression model. This process does not assume normality of the residuals. We will use functions from the <strong>mosaic</strong> package to complete this work. However, know that <strong>tidymodels</strong> and <strong>purrr</strong> are more sophisticated tools for doing this work.</p>
 <div id="resampling" class="section level3" number="29.3.1">
 <h3><span class="header-section-number">29.3.1</span> Resampling</h3>
 <p>To make this ideas more salient, let’s use the Starbucks example again.</p>
@@ -861,7 +861,7 @@ The latter is a special case of a more general rule: sample <span class="math in
 ## 4  227.4138 2.805156 79.97902 0.2467094 24.56317     1    75    1      4
 ## 5  194.9190 3.457191 83.74624 0.2670279 27.32313     1    75    1      5
 ## 6  183.1159 3.549460 73.90153 0.3931691 48.59292     1    75    1      6</code></pre>
-<p>With all this data in <code>results</code>, we can generate confidence intervals for the slope, <span class="math inline">\(R\)</span>-squared (<span class="math inline">\(R^2\)</span>), and <span class="math inline">\(F\)</span>. Figure <a href="LRSIM.html#fig:hist291-fig">29.1</a> is a histogram of slope.</p>
+<p>With all this data in <code>results</code>, we can generate confidence intervals for the slope, <span class="math inline">\(R\)</span>-squared (<span class="math inline">\(R^2\)</span>), and the <span class="math inline">\(F\)</span> statistic. Figure <a href="LRSIM.html#fig:hist291-fig">29.1</a> is a histogram of slope values from resampling.</p>
 <div class="sourceCode" id="cb891"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb891-1"><a href="LRSIM.html#cb891-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb891-2"><a href="LRSIM.html#cb891-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>carb,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb891-3"><a href="LRSIM.html#cb891-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> obs<span class="sc">$</span>carb,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -998,7 +998,7 @@ Figure 29.4: Histogram of estimated regression slope using resampling from resid
 <span id="cb917-3"><a href="LRSIM.html#cb917-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdata</span>(<span class="sc">~</span>pred,<span class="at">data=</span>.)</span></code></pre></div>
 <pre><code>##         lower    upper central.p
 ## 2.5% 385.2706 423.6689      0.95</code></pre>
-<p>This is similar to the interval we found last lesson. We are 95% confident that the average calorie content for a menu item with 60 grams of carbohydrates is between 380.8 and 425.7.</p>
+<p>This is similar to the interval we found last chapter. We are 95% confident that the average calorie content for a menu item with 60 grams of carbohydrates is between 380.8 and 425.7.</p>
 <div id="prediction-interval" class="section level3" number="29.4.1">
 <h3><span class="header-section-number">29.4.1</span> Prediction interval</h3>
 <p>The prediction interval is more difficult to perform with a bootstrap. We would have to account for the variability of the slope but also the residual variability since this is an individual observation. We can’t just add the residual to the predicted value. Remember the variance of a sum of independent variables is the sum of the variances. But here we have standard deviations and we can’t just add them.</p>
@@ -1014,12 +1014,12 @@ Figure 29.4: Histogram of estimated regression slope using resampling from resid
 <span id="cb921-5"><a href="LRSIM.html#cb921-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdata</span>(<span class="sc">~</span>pred_ind,<span class="at">data=</span>.)</span></code></pre></div>
 <pre><code>##         lower    upper central.p
 ## 2.5% 277.4886 577.0957      0.95</code></pre>
-<p>This prediction interval appears to be biased. Thus generating a prediction interval is beyond the scope of this class.</p>
+<p>This prediction interval appears to be biased. Thus generating a prediction interval is beyond the scope of this book.</p>
 </div>
 </div>
 <div id="categorical-predictor" class="section level2" number="29.5">
 <h2><span class="header-section-number">29.5</span> Categorical predictor</h2>
-<p>We want to finish up simple linear regression by discussing a categorical predictor. It changes our interpretation somewhat.</p>
+<p>We want to finish up simple linear regression by discussing a categorical predictor. It somewhat changes the interpretation of the regression model.</p>
 <p>Thus far, we have only discussed regression in the context of a quantitative, continuous, response AND a quantitative, continuous, predictor. We can build linear models with categorical predictor variables as well.</p>
 <p>In the case of a binary covariate, nothing about the linear model changes. The two levels of the binary covariate are typically coded as 1 and 0, and the model is built, evaluated and interpreted in an analogous fashion as before. The difference between the continuous predictor and categorical is that there are only two values the predictor can take and the regression model will simply predict the average value of the response within each value of the predictor.</p>
 <p>In the case of a categorical covariate with <span class="math inline">\(k\)</span> levels, where <span class="math inline">\(k&gt;2\)</span>, we need to include <span class="math inline">\(k-1\)</span> <em>dummy variables</em> in the model. Each of these dummy variables takes the value 0 or 1. For example, if a covariate has <span class="math inline">\(k=3\)</span> categories or levels (say A, B or C), we create two dummy variables, <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, each of which can only take values 1 or 0. We arbitrarily state that if <span class="math inline">\(X_1=1\)</span>, it represents the covariate has the value A. Likewise if <span class="math inline">\(X_2=1\)</span>, then we state that the covariate takes the value B. If both <span class="math inline">\(X_1=0\)</span> and <span class="math inline">\(X_2=0\)</span>, this is known as the reference category, and in this case the covariate takes the value C. The arrangement of the levels of the categorical covariate are arbitrary and can be adjusted by the user. This coding of the covariate into dummy variables is called <strong>contrasts</strong> and again is typically taught in a more advanced course on linear models.</p>
@@ -1095,7 +1095,7 @@ Figure 29.5: Boxplot of loan interest rates from the Lending Club based on homeo
 ## Multiple R-squared:  0.08517,    Adjusted R-squared:  0.06591 
 ## F-statistic: 4.422 on 2 and 95 DF,  p-value: 0.01458</code></pre>
 <p>Note that by default, <code>R</code> set the <code>MORTGAGE</code> level as the reference category. This is because it is first value when sorted alphabetically. You can control this by changing the order of the factor levels. The package <strong>forcats</strong> helps with this effort.</p>
-<p>How would we interpret this output? Since <code>MORTGAGE</code> is reference category, the intercept is effectively the estimated, average, interest rate for home owners with a mortgage.</p>
+<p>How would we interpret this output? Since <code>MORTGAGE</code> is the reference category, the intercept is effectively the estimated, average, interest rate for home owners with a mortgage.</p>
 <div class="sourceCode" id="cb938"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb938-1"><a href="LRSIM.html#cb938-1" aria-hidden="true" tabindex="-1"></a>loans100 <span class="sc">%&gt;%</span></span>
 <span id="cb938-2"><a href="LRSIM.html#cb938-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(homeownership <span class="sc">==</span> <span class="st">&quot;MORTGAGE&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb938-3"><a href="LRSIM.html#cb938-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">average=</span><span class="fu">mean</span>(interest_rate))</span></code></pre></div>
