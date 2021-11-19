@@ -805,7 +805,7 @@ div.csl-indent {
 <h2><span class="header-section-number">30.3</span> Multiple regression</h2>
 <p>Multiple regression extends simple two-variable regression to the case that still has one response but many predictors (denoted <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_3\)</span>, …). The method is motivated by scenarios where many variables may be simultaneously connected to an output.</p>
 <p>To explore and explain these ideas, we will consider Ebay auctions of a video game called <strong>Mario Kart</strong> for the Nintendo Wii. The outcome variable of interest is the total price of an auction, which is the highest bid plus the shipping cost. We will try to determine how total price is related to each characteristic in an auction while simultaneously controlling for other variables. For instance, with all other characteristics held constant, are longer auctions associated with higher or lower prices? And, on average, how much more do buyers tend to pay for additional Wii wheels (plastic steering wheels that attach to the Wii controller) in auctions? Multiple regression will help us answer these and other questions.</p>
-<p>The data set is in the file <code>mariokart.csv</code> in the <code>data</code> folder. This data set includes results from 141 auctions.<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a> Ten observations from this data set are shown in the <code>R</code> code below. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for regression or machine learning courses.</p>
+<p>The data set is in the file <code>mariokart.csv</code> in the <code>data</code> folder. This data set includes results from 141 auctions.<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a> Ten observations from this data set are shown in the <code>R</code> code below. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for advanced regression or machine learning courses.</p>
 <div class="sourceCode" id="cb963"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb963-1"><a href="LRMULTI.html#cb963-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/mariokart.csv&quot;</span>)</span>
 <span id="cb963-2"><a href="LRMULTI.html#cb963-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mariokart,<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 12
@@ -1234,7 +1234,7 @@ The estimated value of the intercept is 41.34, and one might be tempted to make 
 </div>
 <div id="inference-1" class="section level3" number="30.3.3">
 <h3><span class="header-section-number">30.3.3</span> Inference</h3>
-<p>From the printout of the model summary, we can see that both the <code>stock_photo</code> and <code>duration</code> variables are not significantly different from zero. Thus we may want to drop them from the model. In Math 378, we will explore ways to determine the best model including the use of p-values.</p>
+<p>From the printout of the model summary, we can see that both the <code>stock_photo</code> and <code>duration</code> variables are not significantly different from zero. Thus we may want to drop them from the model. In machine learning course, you will explore ways to determine the best model including the use of p-values.</p>
 <p>Likewise, we could generate confidence intervals for the coefficients:</p>
 <div class="sourceCode" id="cb996"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb996-1"><a href="LRMULTI.html#cb996-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(mario_mod_multi)</span></code></pre></div>
 <pre><code>##                     2.5 %     97.5 %
@@ -1294,7 +1294,7 @@ There were <span class="math inline">\(n=141\)</span> auctions in the <code>mari
 <p><strong>Exercise</strong>:<br />
 Suppose you added another predictor to the model, but the variance of the errors <span class="math inline">\(Var(e_i)\)</span> didn’t go down. What would happen to the <span class="math inline">\(R^2\)</span>? What would happen to the adjusted <span class="math inline">\(R^2\)</span>?<a href="#fn103" class="footnote-ref" id="fnref103"><sup>103</sup></a></p>
 </blockquote>
-<p>Again, in Math 378 we will spend more time on how to select models. Using internal metrics of performance such as p-values or adjusted <span class="math inline">\(R\)</span> squared are one way but using external measures of predictive performance such as <strong>cross validation</strong> or <strong>hold out</strong> sets will be introduced.</p>
+<p>Again, in a machine learning course, you will spend more time on how to select models. Using internal metrics of performance such as p-values or adjusted <span class="math inline">\(R\)</span> squared are one way but using external measures of predictive performance such as <strong>cross validation</strong> or <strong>hold out</strong> sets will be introduced.</p>
 </div>
 <div id="reduced-model" class="section level3" number="30.3.5">
 <h3><span class="header-section-number">30.3.5</span> Reduced model</h3>
@@ -1367,7 +1367,7 @@ Suppose you added another predictor to the model, but the variance of the errors
 ## Residual standard error: 4.887 on 138 degrees of freedom
 ## Multiple R-squared:  0.7165, Adjusted R-squared:  0.7124 
 ## F-statistic: 174.4 on 2 and 138 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Though the adjusted <span class="math inline">\(R^2\)</span>dropped a little, it is only in the fourth decimal place and thus essentially the same value. We therefor will go with this model. Again, Math 378 will go more into depth about model selection.</p>
+<p>Though the adjusted <span class="math inline">\(R^2\)</span> dropped a little, it is only in the fourth decimal place and thus essentially the same value. We therefore will go with this model.</p>
 </div>
 <div id="confidence-and-prediction-intervals" class="section level3" number="30.3.6">
 <h3><span class="header-section-number">30.3.6</span> Confidence and prediction intervals</h3>
@@ -1399,7 +1399,7 @@ Figure 30.7: Diagnostic residual plots for multiple regression model.
 </div>
 <div id="interaction-and-higher-order-terms" class="section level2" number="30.4">
 <h2><span class="header-section-number">30.4</span> Interaction and Higher Order Terms</h2>
-<p>As a final short topic we want to explore <strong>feature engineering</strong>. Thus far we have not done any transformation to the predictors in the data set except maybe making categorical variables into factors. In data analysis competitions, such as Kaggle, feature engineering is often one of the most important steps. In Math 378, we will look at different tools but in this class we will look at simple transformations such as higher order terms and interactions.</p>
+<p>As a final short topic we want to explore <strong>feature engineering</strong>. Thus far we have not done any transformation to the predictors in the data set except maybe making categorical variables into factors. In data analysis competitions, such as Kaggle, feature engineering is often one of the most important steps. In a machine learning course, you will look at different tools but in this book we will look at simple transformations such as higher order terms and interactions.</p>
 <p>To make this section more relevant, we are going to switch to a different data set. Load the library <strong>ISLR</strong>.</p>
 <div class="sourceCode" id="cb1021"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1021-1"><a href="LRMULTI.html#cb1021-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span></code></pre></div>
 <p>The data set of interest is <code>Credit</code>. Use the help menu to read about the variables. This is a simulated data set of credit card debt.</p>
@@ -1465,7 +1465,7 @@ Write the equation for the regression model.</p>
 \mbox{E}(Balance)=211.14 + 5.98*\text{Income}+ 382.67*\text{(Student=Yes)} 
 \]</span></p>
 <p>If the observation is a student, then the intercept is increased by 382.67.</p>
-<p>In this case, we would want to include an interaction term in the model: an <strong>interaction</strong> term allows the slope to change as well. To include an interaction term when building a model in <code>R</code>, we use <code>*</code>.</p>
+<p>In this next case, we would want to include an interaction term in the model: an <strong>interaction</strong> term allows the slope to change as well. To include an interaction term when building a model in <code>R</code>, we use <code>*</code>.</p>
 <div class="sourceCode" id="cb1028"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1028-1"><a href="LRMULTI.html#cb1028-1" aria-hidden="true" tabindex="-1"></a>credit_mod2<span class="ot">&lt;-</span><span class="fu">lm</span>(Balance<span class="sc">~</span>Income<span class="sc">*</span>Student,<span class="at">data=</span>Credit)</span></code></pre></div>
 <div class="sourceCode" id="cb1029"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1029-1"><a href="LRMULTI.html#cb1029-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(credit_mod2)</span></code></pre></div>
 <pre><code>## 
@@ -1500,7 +1500,7 @@ Figure 30.9: Scatterplot of credit card balance for income and student status wi
 </p>
 </div>
 <p>Now we have a different slope and intercept for each case of the <code>Student</code> variable, Figure <a href="LRMULTI.html#fig:scat306-fig">30.9</a>. Thus there is a synergy or interaction between these variables. The student status changes the impact of <code>Income</code> on <code>Balance</code>. If you are a student, then for every increase in income of 1 the balance increase by 4.219 on average. If you are not a student, every increase in income of 1 increases the average balance by 6.2182.</p>
-<p>Furthermore, if you suspect that perhaps a curved relationship exists between two variables, we could include a higher order term. As an example, let’s add a quadratic term for <code>Income</code> to our model (without the interaction). To do this in <code>R</code>, we need to wrap the higher order term in <code>I()</code>. If we include a higher order term, we usually want to include the lower order terms as well, in Math 378 you will make the decision on what to include using predictive performance.</p>
+<p>Furthermore, if you suspect that perhaps a curved relationship exists between two variables, we could include a higher order term. As an example, let’s add a quadratic term for <code>Income</code> to our model (without the interaction). To do this in <code>R</code>, we need to wrap the higher order term in <code>I()</code>. If we include a higher order term, we usually want to include the lower order terms as well; a better approach is to make the decision on what to include using predictive performance.</p>
 <div class="sourceCode" id="cb1032"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1032-1"><a href="LRMULTI.html#cb1032-1" aria-hidden="true" tabindex="-1"></a>credit_mod3<span class="ot">&lt;-</span><span class="fu">lm</span>(Balance<span class="sc">~</span>Income<span class="sc">+</span><span class="fu">I</span>(Income<span class="sc">^</span><span class="dv">2</span>),<span class="at">data=</span>Credit)</span></code></pre></div>
 <div class="sourceCode" id="cb1033"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1033-1"><a href="LRMULTI.html#cb1033-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(credit_mod3)</span></code></pre></div>
 <pre><code>## 
@@ -1535,7 +1535,7 @@ Figure 30.10: Scatterplot of credit card balance for income with a quadratic fit
 <p>There is not much of a quadratic relationship, Figure <a href="LRMULTI.html#fig:scat307-fig">30.10</a>.</p>
 <div id="summary-3" class="section level3" number="30.4.1">
 <h3><span class="header-section-number">30.4.1</span> Summary</h3>
-<p>In this lesson we have extended the linear regression model by allowing multiple predictors. This allows us to account for confounding variables and make more sophisticated models. The interpretation and evaluation of the model changes.</p>
+<p>In this chapter we have extended the linear regression model by allowing multiple predictors. This allows us to account for confounding variables and make more sophisticated models. The interpretation and evaluation of the model changes.</p>
 </div>
 </div>
 <div id="homework-problems-29" class="section level2" number="30.5">
