@@ -131,18 +131,18 @@ head(results)
 ## 6  183.1159 3.549460 73.90153 0.3931691 48.59292     1    75    1      6
 ```
 
-If we plot all the slopes, Figure \@ref(fig:slope291-fig), we get a sense of the variability in the estimated slope and intercept. This also gives us an idea of the width of the confidence interval on the estimated mean response. We can see that the confidence interval will be wider at the extreme values of the predictor. 
+If we plot all the slopes, the red lines in Figure \@ref(fig:slope291-fig), we get a sense of the variability in the estimated slope and intercept. This also gives us an idea of the width of the confidence interval on the estimated mean response. We plotted the confidence interval in a gray shade and we can see it matches the red shaded region of the bootstrap slopes. We can see that the confidence interval will be wider at the extreme values of the predictor. 
 
 
 ```r
 ggplot(starbucks, aes(x=carb, y=calories)) +
   geom_abline(data = results,
               aes(slope =  carb, intercept = Intercept), 
-              alpha = 0.01) +
+              alpha = 0.01,color="red") +
   geom_point(shape = 19, color = "red") +
   theme_classic() +
   labs(x="Carbohydrates (g)",y="Calories",title="Bootstrap Slopes",subtitle ="1000 Slopes") +
-  geom_lm()
+  geom_lm(interval="confidence")
 ```
 
 <div class="figure">
