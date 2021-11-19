@@ -131,6 +131,26 @@ head(results)
 ## 6  183.1159 3.549460 73.90153 0.3931691 48.59292     1    75    1      6
 ```
 
+If we plot all the slopes, Figure \@ref(fig:slope291-fig), we get a sense of the variability in the estimated slope and intercept. This also gives us an idea of the width of the confidence interval on the estimated mean response. We can see that the confidence interval will be wider at the extreme values of the predictor. 
+
+
+```r
+ggplot(starbucks, aes(x=carb, y=calories)) +
+  geom_abline(data = results,
+              aes(slope =  carb, intercept = Intercept), 
+              alpha = 0.01) +
+  geom_point(shape = 19, color = "red") +
+  theme_classic() +
+  labs(x="Carbohydrates (g)",y="Calories",title="Bootstrap Slopes",subtitle ="1000 Slopes") +
+  geom_lm()
+```
+
+<div class="figure">
+<img src="29-Simulation-Based-Linear-Regression_files/figure-html/slope291-fig-1.png" alt="Plot of slopes from resampled regression." width="672" />
+<p class="caption">(\#fig:slope291-fig)Plot of slopes from resampled regression.</p>
+</div>
+
+
 With all this data in `results`, we can generate confidence intervals for the slope, $R$-squared ($R^2$), and the $F$ statistic. Figure \@ref(fig:hist291-fig) is a histogram of slope values from resampling.
 
 
@@ -259,7 +279,9 @@ Next the confidence interval.
 
 
 ```r
-(slope_ci<-get_confidence_interval(results2,point_estimate = slope_estimate))
+slope_ci<-results2 %>%
+  get_confidence_interval(level=0.95)
+slope_ci
 ```
 
 ```
@@ -653,6 +675,7 @@ head(results)
 ## 5     2    95    1      5
 ## 6     2    95    1      6
 ```
+
 
 We of course can generate a confidence interval on either of the coefficients in the `results` object.
 
