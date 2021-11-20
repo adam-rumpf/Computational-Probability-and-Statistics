@@ -144,7 +144,7 @@ tally(cond~stock_photo,data=mariokart
 ##   Total 1.0000000 1.0000000
 ```
 
-We could analyze this by comparing the proportion of new condition games for each stock photo value using both randomization, empirical p-values, and the central limit theorem. We will just use an exact permutation test, **Fisher Exact Test."  
+We could analyze this by comparing the proportion of new condition games for each stock photo value using both randomization, empirical p-values, and the central limit theorem. We will just use an exact permutation test, **Fisher Exact Test**.  
 
 
 ```r
@@ -193,14 +193,20 @@ $$
 	= \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \cdots + \beta_k x_{k,i}
 $$  
 
-The logit transformation is shown in Figure \@ref(fig:logit-fig). 
+Solving for $p_i$ we get the logistic function:
+
+$$
+p_i 	= \frac{1}{1+e^{-(\beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \cdots + \beta_k x_{k,i})}}
+$$
+
+The logistic function is shown in Figure \@ref(fig:logit-fig). 
 
 <div class="figure">
 <img src="31-Logistic-Regression_files/figure-html/logit-fig-1.png" alt="Logitstic function with some example points plotted." width="672" />
 <p class="caption">(\#fig:logit-fig)Logitstic function with some example points plotted.</p>
 </div>
 
-Notice the output of the `logit` function restricts the values between 0 and 1. The curve is fairly flat on the edges with a sharp rise in the center. There are other functions that achieve this same result. However, for reasons beyond the scope of this class, the logit function has desirable mathematical properties that relate making sure all the common GLMs fall within the exponential family of distributions. This topic is at the graduate school level and not needed for our studies. 
+Notice the output of the `logistic` function restricts the values between 0 and 1. The curve is fairly flat on the edges with a sharp rise in the center. There are other functions that achieve this same result. However, for reasons beyond the scope of this book, the logit function has desirable mathematical properties that relate making sure all the common GLMs fall within the exponential family of distributions. This topic is at the graduate school level and not needed for our studies. 
 
 In our Mario Kart example, there are 4 predictor variables, so $k = 4$. This nonlinear model isn't very intuitive, but it still has some resemblance to multiple regression, and we can fit this model using software. In fact, once we look at results from software, it will start to feel like we're back in multiple regression, even if the interpretation of the coefficients is more complex.
 
@@ -924,8 +930,12 @@ do(1)*glm(cond=="new"~stock_photo+total_pr,
 ```
 
 ```
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+```
+
+```
 ##   Intercept stock_photoyes  total_pr .row .index
-## 1 -12.05259       1.227733 0.2234654    1      1
+## 1 -44.57515       24.37477 0.4357429    1      1
 ```
 
 Again, it looks like what we expect. Now let's bootstrap the coefficients and summarize the results.

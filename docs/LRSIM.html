@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-11-19" />
+<meta name="date" content="2021-11-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -866,7 +866,7 @@ The latter is a special case of a more general rule: sample <span class="math in
 <span id="cb891-2"><a href="LRSIM.html#cb891-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">data =</span> results,</span>
 <span id="cb891-3"><a href="LRSIM.html#cb891-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">slope =</span>  carb, <span class="at">intercept =</span> Intercept), </span>
 <span id="cb891-4"><a href="LRSIM.html#cb891-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.01</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb891-5"><a href="LRSIM.html#cb891-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb891-5"><a href="LRSIM.html#cb891-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb891-6"><a href="LRSIM.html#cb891-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
 <span id="cb891-7"><a href="LRSIM.html#cb891-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Carbohydrates (g)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Calories&quot;</span>,<span class="at">title=</span><span class="st">&quot;Bootstrap Slopes&quot;</span>,<span class="at">subtitle =</span><span class="st">&quot;1000 Slopes&quot;</span>) <span class="sc">+</span></span>
 <span id="cb891-8"><a href="LRSIM.html#cb891-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_lm</span>(<span class="at">interval=</span><span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
