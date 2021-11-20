@@ -930,12 +930,8 @@ do(1)*glm(cond=="new"~stock_photo+total_pr,
 ```
 
 ```
-## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-```
-
-```
 ##   Intercept stock_photoyes  total_pr .row .index
-## 1 -44.57515       24.37477 0.4357429    1      1
+## 1  -13.5631       2.321179 0.2336569    1      1
 ```
 
 Again, it looks like what we expect. Now let's bootstrap the coefficients and summarize the results.

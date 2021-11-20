@@ -926,9 +926,9 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 <pre><code>## 
 ## quantitative variables:  
 ##      name   class         min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.007787575 0.5045486 0.7102963 0.8657399 0.9999177 0.6692619
-##             sd     n missing
-## ...1 0.2339789 10000       0</code></pre>
+## ...1 sqrt numeric 0.006607302 0.4994243 0.7095233 0.8712758 0.9999835 0.6682749
+##           sd     n missing
+## ...1 0.23619 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
 <div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="TRANS.html#cb410-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb410-2"><a href="TRANS.html#cb410-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>sqrt,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -957,10 +957,10 @@ Figure 16.3: The density plot of the transformed random variable from the simula
 <div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="TRANS.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(y_results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class       min        Q1     median         Q3           max
-## ...1    y numeric -4.855226 -0.684091 -0.3420731 -0.1441708 -8.228994e-05
-##            mean        sd     n missing
-## ...1 -0.4939401 0.4933427 10000       0</code></pre>
+##      name   class      min         Q1    median         Q3          max
+## ...1    y numeric -5.01958 -0.6942992 -0.343162 -0.1377967 -1.65224e-05
+##            mean       sd     n missing
+## ...1 -0.4969959 0.497156 10000       0</code></pre>
 </div>
 <div id="multivariate-transformations" class="section level3" number="16.2.6">
 <h3><span class="header-section-number">16.2.6</span> Multivariate Transformations</h3>
