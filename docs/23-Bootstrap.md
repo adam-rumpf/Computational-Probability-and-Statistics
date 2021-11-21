@@ -1,13 +1,6 @@
 # Bootstrap {#BOOT}
 
 
-\newcommand{\E}{\mbox{E}}
-\newcommand{\Var}{\mbox{Var}}
-\newcommand{\Cov}{\mbox{Cov}}
-\newcommand{\Prob}{\mbox{P}}
-\newcommand{\diff}{\,\mathrm{d}}
-
-
 ## Objectives
 
 1) Use the bootstrap to estimate the standard error, the standard deviation, of the sample statistic.  

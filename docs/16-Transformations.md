@@ -2,11 +2,6 @@
 
 
 
-\newcommand{\E}{\mbox{E}}
-\newcommand{\Var}{\mbox{Var}}
-\newcommand{\Cov}{\mbox{Cov}}
-\newcommand{\Prob}{\mbox{P}}
-\newcommand{\diff}{\,\mathrm{d}}
 
 
 ## Objectives
@@ -211,10 +206,10 @@ inspect(results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class        min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.01050376 0.4950838 0.7066596 0.8653917 0.9998899 0.6648514
+##      name   class         min        Q1    median        Q3       max      mean
+## ...1 sqrt numeric 0.009596104 0.4980094 0.7037223 0.8651867 0.9999696 0.6645036
 ##             sd     n missing
-## ...1 0.2361875 10000       0
+## ...1 0.2371945 10000       0
 ```
 
 Figure \@ref(fig:dens161-fig) is a density plot of the simulated original random variable.
@@ -264,10 +259,10 @@ inspect(y_results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class       min         Q1     median        Q3           max
-## ...1    y numeric -4.556022 -0.7030282 -0.3472062 -0.144573 -0.0001100737
+##      name   class       min         Q1     median       Q3           max
+## ...1    y numeric -4.646398 -0.6971363 -0.3513715 -0.14481 -3.043131e-05
 ##            mean        sd     n missing
-## ...1 -0.5029923 0.4990393 10000       0
+## ...1 -0.5065125 0.5114655 10000       0
 ```
 
 

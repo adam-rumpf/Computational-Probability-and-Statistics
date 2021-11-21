@@ -17,6 +17,8 @@ cover-image: "figures/Cover.png"
 description: "This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book."
 ---
 
+\input{latex/math-definitions.tex}
+
 # Preface {-}
 
 

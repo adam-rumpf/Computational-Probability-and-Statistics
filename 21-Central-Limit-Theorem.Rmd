@@ -1,13 +1,6 @@
 # Central Limit Theorem {#CLT}
 
 
-\newcommand{\E}{\mbox{E}}
-\newcommand{\Var}{\mbox{Var}}
-\newcommand{\Cov}{\mbox{Cov}}
-\newcommand{\Prob}{\mbox{P}}
-\newcommand{\diff}{\,\mathrm{d}}
-
-
 ## Objectives
 
 1) Explain the central limit theorem and when you can use it for inference.   
