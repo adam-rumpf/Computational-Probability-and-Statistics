@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-11-20" />
+<meta name="date" content="2021-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -790,7 +790,7 @@ div.csl-indent {
 </li>
 <li>Write the logistic regression model and predict outputs for given inputs.<br />
 </li>
-<li>Use the bootstrap to find confidence intervals for parameter estimates and predictions.</li>
+<li>Find confidence intervals for parameter estimates and predictions.</li>
 </ol>
 </div>
 <div id="logistic-regression-introduction" class="section level2" number="31.2">
@@ -896,7 +896,7 @@ div.csl-indent {
 ##   new   0.1111111 0.5238095
 ##   used  0.8888889 0.4761905
 ##   Total 1.0000000 1.0000000</code></pre>
-<p>We could analyze this by comparing the proportion of new condition games for each stock photo value using both randomization, empirical p-values, and the central limit theorem. We will just use an exact permutation test, <strong>Fisher Exact Test</strong>.</p>
+<p>We could analyze this by comparing the proportion of new condition games for each stock photo value using both randomization, empirical p-values, and the central limit theorem. We will just use an exact permutation test, <strong>Fisher Exact Test</strong>, which just uses the hypergeometric distribution.</p>
 <div class="sourceCode" id="cb1039"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1039-1"><a href="LOGREG.html#cb1039-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(<span class="fu">tally</span>(<span class="sc">~</span>cond<span class="sc">+</span>stock_photo,<span class="at">data=</span>mariokart))</span></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
@@ -1071,7 +1071,7 @@ Fit a logistic regression model with <code>cond</code> as used and <code>stock_p
 ## 1 yes           0.476
 ## 2 no            0.889</code></pre>
 <p>This matches the output from the <code>tally()</code> function we observed above.</p>
-<p>Notice that is was not important whether we select new condition as the desired outcome or used status. In either case, the logistic regression model returns the conditional probability given the value of the predictor.</p>
+<p>Notice that it was not important whether we select new or used condition as the desired outcome. In either case, the logistic regression model returns the conditional probability given the value of the predictor.</p>
 </div>
 <div id="interpreting-the-coefficients" class="section level3" number="31.2.6">
 <h3><span class="header-section-number">31.2.6</span> Interpreting the coefficients</h3>
@@ -1159,7 +1159,7 @@ Fit a logistic regression model with <code>cond</code> as used and <code>stock_p
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Adding, <code>stock_photo</code> is a statistically significant result. The p-value is different from the <code>summary()</code> function, because it assumes the coefficient follows a normal distribution. Different assumptions, but the same conclusion.</p>
-<p>The use of p-value to pick a best model uses statistical assumptions to select the features. Another approach is to use a predictive measure. In machine learning contexts, which we will learn about in Math 378, use many different predictive performance measures for model selection but many are based on a <strong>confusion matrix</strong>.</p>
+<p>The use of p-value to pick a best model uses statistical assumptions to select the features. Another approach is to use a predictive measure. In machine learning contexts, we use many different predictive performance measures for model selection but many are based on a <strong>confusion matrix</strong>.</p>
 <p>A confusion matrix generates a 2 by 2 matrix of predicted outcomes versus actual outcomes. For logistic regression, the output is a probability of success. To convert this to 0/1 outcome we pick a threshold. It is common to use 0.5 as the threshold. Probabilities above 0.5 are considered a success, in the context of our problem a new game. Let’s generate the confusion matrix.</p>
 <div class="sourceCode" id="cb1070"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1070-1"><a href="LOGREG.html#cb1070-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(mario_mod2,<span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb1070-2"><a href="LOGREG.html#cb1070-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">actual=</span><span class="fu">starts_with</span>(<span class="st">&#39;cond&#39;</span>)) <span class="sc">%&gt;%</span></span>
@@ -1177,12 +1177,12 @@ Fit a logistic regression model with <code>cond</code> as used and <code>stock_p
 ## cond   no yes
 ##   new   4  55
 ##   used 32  50</code></pre>
-<p>If we change the threshold we get a different accuracy. In Math 378, we will learn about other metrics such as area under the ROC curve. But let’s add another variable to see if we can improve the model.</p>
+<p>If we change the threshold we get a different accuracy. In a machine learning course, we learn about other metrics such as area under the ROC curve. Back to our problem, let’s add another variable to see if we can improve the model.</p>
 </div>
 </div>
 <div id="multiple-logistic-regression" class="section level2" number="31.3">
 <h2><span class="header-section-number">31.3</span> Multiple logistic regression</h2>
-<p>Let’s add <code>total_pr</code> to the model. This model is something that we could not have done in the previous models we learned.</p>
+<p>Let’s add <code>total_pr</code> to the model. This model is something that we could not have done in the previous models we learned about.</p>
 <div class="sourceCode" id="cb1074"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1074-1"><a href="LOGREG.html#cb1074-1" aria-hidden="true" tabindex="-1"></a>mario_mod4 <span class="ot">&lt;-</span> <span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span>total_pr,</span>
 <span id="cb1074-2"><a href="LOGREG.html#cb1074-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span>mariokart,</span>
 <span id="cb1074-3"><a href="LOGREG.html#cb1074-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
@@ -1229,8 +1229,8 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## result  0  1
 ##      0 71 16
 ##      1 11 43</code></pre>
-<p>For our new model, the accuracy improved to <span class="math inline">\(71 + 43\)</span> out of the 141 cases, or 80.9.7%. Without a measure of variability, we don’t know if this significant improvement or just the variability in the modeling procedure. On the surface, it appears to be an improvement.</p>
-<p>As another preview of what we will be doing in Math 378, let’s use a quadratic term in our model.</p>
+<p>For our new model, the accuracy improved to <span class="math inline">\(71 + 43\)</span> out of the 141 cases, or 80.9.7%. Without a measure of variability, we don’t know if this is significant improvement or just the variability in the modeling procedure. On the surface, it appears to be an improvement.</p>
+<p>As we experiment to improve the model, let’s use a quadratic term in our model.</p>
 <div class="sourceCode" id="cb1079"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1079-1"><a href="LOGREG.html#cb1079-1" aria-hidden="true" tabindex="-1"></a>mario_mod5 <span class="ot">&lt;-</span> <span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span><span class="fu">poly</span>(total_pr,<span class="dv">2</span>),</span>
 <span id="cb1079-2"><a href="LOGREG.html#cb1079-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span>mariokart,</span>
 <span id="cb1079-3"><a href="LOGREG.html#cb1079-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
@@ -1282,7 +1282,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## result  0  1
 ##      0 69 12
 ##      1 13 47</code></pre>
-<p>Almost any classifier will have some error. In the model above, we have decided that it is okay to allow up to 9%, 13 out of 141, of the games for sale to be classified as new when they are really used. If we wanted to make it a little harder to classify as new, we could use a cutoff of 0.75. This would have two effects. Because it raises the standard for what can be classified as new, it reduces the number of used games that are classified as new. However, it will also fail to correctly classify an increased fraction of new games as new, see the code below. No matter the complexity and the confidence we might have in our model, these practical considerations are absolutely crucial to making a helpful classification model. Without them, we could actually do more harm than good by using our statistical model. This tradeoff is similar to the one we found between Type 1 and Type 2 errors. Notice that the accuracy has also dropped slightly.</p>
+<p>Almost any classifier will have some error. In the model above, we have decided that it is okay to allow up to 9%, 13 out of 141, of the games for sale to be classified as new when they are really used. If we wanted to make it a little harder to classify an item as new, we could use a cutoff, threshold, of 0.75. This would have two effects. Because it raises the standard for what can be classified as new, it reduces the number of used games that are classified as new. However, it will also fail to correctly classify an increased fraction of new games as new, see the code below. No matter the complexity and the confidence we might have in our model, these practical considerations are absolutely crucial to making a helpful classification model. Without them, we could actually do more harm than good by using our statistical model. This tradeoff is similar to the one we found between Type 1 and Type 2 errors. Notice that the accuracy has also dropped slightly.</p>
 <div class="sourceCode" id="cb1086"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1086-1"><a href="LOGREG.html#cb1086-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(mario_mod5,<span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb1086-2"><a href="LOGREG.html#cb1086-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">actual=</span><span class="fu">starts_with</span>(<span class="st">&#39;cond&#39;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb1086-3"><a href="LOGREG.html#cb1086-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">result=</span><span class="fu">as.integer</span>(.fitted<span class="sc">&gt;</span><span class="fl">0.75</span>),</span>
@@ -1292,7 +1292,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## result  0  1
 ##      0 78 22
 ##      1  4 37</code></pre>
-<p>In Math 378, we will learn about better methods to assess predictive accuracy as well as more sophisticated methods to transform and adapt our predictor variables.</p>
+<p>In a machine learning course, we learn about better methods to assess predictive accuracy as well as more sophisticated methods to transform and adapt our predictor variables.</p>
 <blockquote>
 <p><strong>Exercise</strong> Find the probability that an auctioned game is new if the total price is 50 and it uses a stock photo.</p>
 </blockquote>
@@ -1304,7 +1304,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ##   stock_photo total_pr .fitted
 ##   &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 yes               50   0.693</code></pre>
-<p>We predict that the probability of the game being new if it uses a stock photo and the total price is 50 is 0.693%.</p>
+<p>We predict that the probability of the game being new if it uses a stock photo and the total price is 50 is 69.3%.</p>
 <p>If we want to recreate the calculation, we need to use a <strong>raw</strong> polynomial.</p>
 <div class="sourceCode" id="cb1090"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1090-1"><a href="LOGREG.html#cb1090-1" aria-hidden="true" tabindex="-1"></a>mario_mod6 <span class="ot">&lt;-</span> <span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span>total_pr<span class="sc">+</span><span class="fu">I</span>(total_pr<span class="sc">^</span><span class="dv">2</span>),</span>
 <span id="cb1090-2"><a href="LOGREG.html#cb1090-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span>mariokart,</span>
@@ -1381,7 +1381,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <span id="cb1105-2"><a href="LOGREG.html#cb1105-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span><span class="fu">resample</span>(mariokart),</span>
 <span id="cb1105-3"><a href="LOGREG.html#cb1105-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
-## 1  -13.5631       2.321179 0.2336569    1      1</code></pre>
+## 1 -14.06191       2.406152 0.2408158    1      1</code></pre>
 <p>Again, it looks like what we expect. Now let’s bootstrap the coefficients and summarize the results.</p>
 <div class="sourceCode" id="cb1107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1107-1"><a href="LOGREG.html#cb1107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5011</span>)</span>
 <span id="cb1107-2"><a href="LOGREG.html#cb1107-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span>total_pr,</span>
