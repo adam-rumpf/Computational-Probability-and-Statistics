@@ -185,7 +185,7 @@ sqrt(runif(1))
 ```
 
 ```
-## [1] 0.9816787
+## [1] 0.5398749
 ```
 
 
@@ -203,10 +203,10 @@ inspect(results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class        min        Q1    median     Q3       max      mean
-## ...1 sqrt numeric 0.00825114 0.4992677 0.7112919 0.8686 0.9999302 0.6687416
-##            sd     n missing
-## ...1 0.234626 10000       0
+##      name   class         min       Q1   median       Q3       max      mean
+## ...1 sqrt numeric 0.008051162 0.504664 0.712111 0.864486 0.9999262 0.6678401
+##             sd     n missing
+## ...1 0.2343566 10000       0
 ```
 
 \pagebreak 
@@ -293,7 +293,7 @@ mean(~sqrt,data=results)
 ```
 
 ```
-## [1] 0.6687416
+## [1] 0.6678401
 ```
 
 
@@ -329,7 +329,7 @@ var(~sqrt,data=results)*9999/10000
 ```
 
 ```
-## [1] 0.05504385
+## [1] 0.05491751
 ```
 
 

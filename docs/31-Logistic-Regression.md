@@ -5,6 +5,7 @@
 1) Using `R`, conduct logistic regression and interpret the output and perform model selection.  
 2) Write the logistic regression model and predict outputs for given inputs.  
 3) Find confidence intervals for parameter estimates and predictions.  
+4) Create and interpret a confusion matrix.  
 
 ## Logistic regression introduction
 
@@ -931,7 +932,7 @@ do(1)*glm(cond=="new"~stock_photo+total_pr,
 
 ```
 ##   Intercept stock_photoyes  total_pr .row .index
-## 1 -11.61292       2.568205 0.1886435    1      1
+## 1  -18.0896       4.731762 0.2877935    1      1
 ```
 
 Again, it looks like what we expect. Now let's bootstrap the coefficients and summarize the results.
