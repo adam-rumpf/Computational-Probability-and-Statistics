@@ -4,6 +4,7 @@ author:
 - Ken Horton
 - Kris Pruitt
 - Bradley Warner
+- Brianna Hitt
 date: "`r Sys.Date()`"
 header-includes:
    - \usepackage{multirow}
