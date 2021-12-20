@@ -1,10 +1,9 @@
 --- 
 title: "Computational Probability and Statistics"
 author: 
-- Ken Horton
-- Kris Pruitt
-- Bradley Warner
 - Brianna Hitt
+- Ken Horton
+- Bradley Warner
 date: "2021-12-20"
 header-includes:
    - \usepackage{multirow}
@@ -82,7 +81,7 @@ This book is licensed under the [Creative Commons Attribution-NonCommercial-Shar
 ## File Creation Information 
 
   * File creation date: 2021-12-20
-  * R version 4.1.0 (2021-05-18)
+  * R version 4.1.2 (2021-11-01)
 
 
 

@@ -21,10 +21,9 @@
   <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
-<meta name="author" content="Ken Horton" />
-<meta name="author" content="Kris Pruitt" />
-<meta name="author" content="Bradley Warner" />
 <meta name="author" content="Brianna Hitt" />
+<meta name="author" content="Ken Horton" />
+<meta name="author" content="Bradley Warner" />
 
 
 <meta name="date" content="2021-12-20" />
@@ -985,7 +984,7 @@ Figure 1.3: Better graph.
 <p>To create an <code>R</code> code chunk, use CTRL-ALT-I or on the <code>insert</code> tab of the window, use the drop down to select <code>R</code>. Anything between the dashes is interpreted as <code>R</code> code.</p>
 <p>For more on RMarkdown, see the following video: <a href="https://www.youtube.com/watch?v=DNS7i2m4sB0" class="uri">https://www.youtube.com/watch?v=DNS7i2m4sB0</a>. This video assumes you are using <code>R</code> on your computer, but we are using RStudio Cloud. Thus we can <code>knit</code> to a pdf since it is setup for us. You can also take the first chapter of the Data Camp course, <em>Reporting with R Markdown</em>, to learn more.</p>
 <ol style="list-style-type: decimal">
-<li><strong>Stent study continued</strong>. Complete a similar analysis for the stent data, but this time use the one year data. In particular,</li>
+<li><strong>Stent study continued</strong>. Complete a similar analysis for the stent data, but this time use the one year outcome. In particular,</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li>Read the data into your working directory.</li>
@@ -997,11 +996,11 @@ i. Use <code>inspect</code> on the data.<br />
 ii. Create a table of <code>outcome365</code> and <code>group</code>. Comment on the results.<br />
 iii. Create a barchart of the data.</li>
 </ol>
-<p>Summary</p>
+<p>Using <code>inspect</code>:</p>
 <pre><code>inspect(___)</code></pre>
-<p>Table</p>
+<p>The table:</p>
 <pre><code>tally(outcome365 ~ ___, data = stent_study, format = ___, margins = TRUE)</code></pre>
-<p>Barchart</p>
+<p>Barchart:</p>
 <pre><code>stent_study %&gt;%
   gf_props(~ ___, fill = ~ ___, position = &#39;fill&#39;) %&gt;%
   gf_labs(title = ___,
@@ -1014,7 +1013,7 @@ iii. Create a barchart of the data.</li>
 <p>The data is in the file <code>migraine_study.csv</code> in the <code>data</code> folder.</p>
 <p>Complete the following work:</p>
 <ol style="list-style-type: lower-alpha">
-<li>Read in the data, an object called <code>migraine_study</code>.</li>
+<li>Read the data into an object called <code>migraine_study</code>.</li>
 </ol>
 <pre><code>migraine_study &lt;- read_csv(&quot;data/___&quot;)</code></pre>
 <pre><code>head(migraine_study)</code></pre>

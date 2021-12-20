@@ -321,7 +321,7 @@ To create an `R` code chunk, use CTRL-ALT-I or on the `insert` tab of the window
 
 For more on RMarkdown, see the following video: https://www.youtube.com/watch?v=DNS7i2m4sB0. This video assumes you are using `R` on your computer, but we are using RStudio Cloud. Thus we can `knit` to a pdf since it is setup for us. You can also take the first chapter of the Data Camp course, *Reporting with R Markdown*, to learn more.
 
-1. **Stent study continued**. Complete a similar analysis for the stent data, but this time use the one year data. In particular,
+1. **Stent study continued**. Complete a similar analysis for the stent data, but this time use the one year outcome. In particular,
 
   a. Read the data into your working directory.
   
@@ -330,26 +330,25 @@ stent_study <- read_csv(___)
 ```
   
 
-
   b. Complete similar steps as in the class notes. The start of code is provided below.  
     i. Use `inspect` on the data.  
     ii. Create a table of `outcome365` and `group`. Comment on the results.  
     iii. Create a barchart of the data.  
     
 
-Summary  
+Using `inspect`:  
 
 ```
 inspect(___)
 ```
 
-Table
+The table: 
 
 ```
 tally(outcome365 ~ ___, data = stent_study, format = ___, margins = TRUE)
 ```
 
-Barchart  
+Barchart:  
 
 ```
 stent_study %>%
@@ -367,7 +366,7 @@ The data is in the file `migraine_study.csv` in the `data` folder.
 
 Complete the following work:
 
-  a. Read in the data, an object called `migraine_study`.  
+  a. Read the data into an object called `migraine_study`.  
   
 ```
 migraine_study <- read_csv("data/___")

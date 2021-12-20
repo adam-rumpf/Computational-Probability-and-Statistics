@@ -1,10 +1,9 @@
 --- 
 title: "Computational Probability and Statistics"
 author: 
-- Ken Horton
-- Kris Pruitt
-- Bradley Warner
 - Brianna Hitt
+- Ken Horton
+- Bradley Warner
 date: "`r Sys.Date()`"
 header-includes:
    - \usepackage{multirow}

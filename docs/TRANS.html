@@ -21,10 +21,9 @@
   <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
   <meta name="twitter:image" content="/figures/Cover.png" />
 
-<meta name="author" content="Ken Horton" />
-<meta name="author" content="Kris Pruitt" />
-<meta name="author" content="Bradley Warner" />
 <meta name="author" content="Brianna Hitt" />
+<meta name="author" content="Ken Horton" />
+<meta name="author" content="Bradley Warner" />
 
 
 <meta name="date" content="2021-12-20" />
@@ -926,10 +925,10 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 <div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="TRANS.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class        min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.01207906 0.5060161 0.7106253 0.8665055 0.9999664 0.6701982
+##      name   class          min        Q1   median        Q3       max      mean
+## ...1 sqrt numeric 0.0007200791 0.4973909 0.705119 0.8653316 0.9999947 0.6647818
 ##             sd     n missing
-## ...1 0.2348978 10000       0</code></pre>
+## ...1 0.2375837 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
 <div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="TRANS.html#cb410-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
 <span id="cb410-2"><a href="TRANS.html#cb410-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>sqrt,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -958,10 +957,10 @@ Figure 16.3: The density plot of the transformed random variable from the simula
 <div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="TRANS.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(y_results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class       min         Q1   median         Q3           max
-## ...1    y numeric -4.416282 -0.6811869 -0.34161 -0.1432869 -3.364679e-05
+##      name   class      min        Q1     median         Q3           max
+## ...1    y numeric -7.23615 -0.698379 -0.3493887 -0.1446425 -5.309382e-06
 ##            mean        sd     n missing
-## ...1 -0.4937883 0.4987513 10000       0</code></pre>
+## ...1 -0.5065082 0.5144281 10000       0</code></pre>
 </div>
 <div id="multivariate-transformations" class="section level3" number="16.2.6">
 <h3><span class="header-section-number">16.2.6</span> Multivariate Transformations</h3>
