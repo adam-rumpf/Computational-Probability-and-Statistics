@@ -26,7 +26,7 @@
 <meta name="author" content="Bradley Warner" />
 
 
-<meta name="date" content="2021-12-20" />
+<meta name="date" content="2021-12-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -806,21 +806,22 @@ div.csl-indent {
 <p>Multiple regression extends simple two-variable regression to the case that still has one response but many predictors (denoted <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_3\)</span>, …). The method is motivated by scenarios where many variables may be simultaneously connected to an output.</p>
 <p>To explore and explain these ideas, we will consider Ebay auctions of a video game called <strong>Mario Kart</strong> for the Nintendo Wii. The outcome variable of interest is the total price of an auction, which is the highest bid plus the shipping cost. We will try to determine how total price is related to each characteristic in an auction while simultaneously controlling for other variables. For instance, with all other characteristics held constant, are longer auctions associated with higher or lower prices? And, on average, how much more do buyers tend to pay for additional Wii wheels (plastic steering wheels that attach to the Wii controller) in auctions? Multiple regression will help us answer these and other questions.</p>
 <p>The data set is in the file <code>mariokart.csv</code> in the <code>data</code> folder. This data set includes results from 141 auctions.<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a> Ten observations from this data set are shown in the <code>R</code> code below. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for advanced regression or machine learning courses.</p>
-<div class="sourceCode" id="cb963"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb963-1"><a href="LRMULTI.html#cb963-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/mariokart.csv&quot;</span>)</span>
-<span id="cb963-2"><a href="LRMULTI.html#cb963-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mariokart,<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb963"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb963-1"><a href="LRMULTI.html#cb963-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/mariokart.csv&quot;</span>,</span>
+<span id="cb963-2"><a href="LRMULTI.html#cb963-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col_types=</span><span class="fu">list</span>(<span class="fu">col_character</span>()))</span>
+<span id="cb963-3"><a href="LRMULTI.html#cb963-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mariokart,<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 12
-##           id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
-##  1   1.50e11        3     20 new       0.99    4        51.6 standa…        1580
-##  2   2.60e11        7     13 used      0.99    3.99     37.0 firstC…         365
-##  3   3.20e11        3     16 new       0.99    3.5      45.5 firstC…         998
-##  4   2.80e11        3     18 new       0.99    0        44   standa…           7
-##  5   1.70e11        1     20 new       0.01    0        71   media           820
-##  6   3.60e11        3     19 new       0.99    4        45   standa…      270144
-##  7   1.20e11        1     13 used      0.01    0        37.0 standa…        7284
-##  8   3.00e11        1     15 new       1       2.99     54.0 upsGro…        4858
-##  9   2.00e11        3     29 used      0.99    4        47   priori…          27
-## 10   3.30e11        7      8 used     20.0     4        50   firstC…         201
+##    id       duration n_bids cond  start_pr ship_pr total_pr ship_sp  seller_rate
+##    &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;
+##  1 1503774…        3     20 new       0.99    4        51.6 standard        1580
+##  2 2604833…        7     13 used      0.99    3.99     37.0 firstCl…         365
+##  3 3204323…        3     16 new       0.99    3.5      45.5 firstCl…         998
+##  4 2804052…        3     18 new       0.99    0        44   standard           7
+##  5 1703922…        1     20 new       0.01    0        71   media            820
+##  6 3601951…        3     19 new       0.99    4        45   standard      270144
+##  7 1204777…        1     13 used      0.01    0        37.0 standard        7284
+##  8 3003555…        1     15 new       1       2.99     54.0 upsGrou…        4858
+##  9 2003920…        3     29 used      0.99    4        47   priority          27
+## 10 3303641…        7      8 used     20.0     4        50   firstCl…         201
 ## # … with 3 more variables: stock_photo &lt;chr&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
 <p>We are only interested in <code>total_pr</code>, <code>cond</code>, <code>stock_photo</code>, <code>duration</code>, and <code>wheels</code>. These variables are described in the following list:</p>
 <ol style="list-style-type: decimal">
@@ -844,35 +845,35 @@ div.csl-indent {
 <pre><code>## 
 ## categorical variables:  
 ##          name     class levels   n missing
-## 1        cond    factor      2 143       0
-## 2     ship_sp character      8 143       0
-## 3 stock_photo    factor      2 143       0
-## 4       title character     80 142       1
+## 1          id character    143 143       0
+## 2        cond    factor      2 143       0
+## 3     ship_sp character      8 143       0
+## 4 stock_photo    factor      2 143       0
+## 5       title character     80 142       1
 ##                                    distribution
-## 1 used (58.7%), new (41.3%)                    
-## 2 standard (23.1%), upsGround (21.7%) ...      
-## 3 yes (73.4%), no (26.6%)                      
-## 4  (%) ...                                     
+## 1 110439174663 (0.7%) ...                      
+## 2 used (58.7%), new (41.3%)                    
+## 3 standard (23.1%), upsGround (21.7%) ...      
+## 4 yes (73.4%), no (26.6%)                      
+## 5  (%) ...                                     
 ## 
 ## quantitative variables:  
-##             name   class          min           Q1       median           Q3
-## ...1          id numeric 1.104392e+11 1.403506e+11 2.204911e+11 2.953551e+11
-## ...2    duration numeric 1.000000e+00 1.000000e+00 3.000000e+00 7.000000e+00
-## ...3      n_bids numeric 1.000000e+00 1.000000e+01 1.400000e+01 1.700000e+01
-## ...4    start_pr numeric 1.000000e-02 9.900000e-01 1.000000e+00 1.000000e+01
-## ...5     ship_pr numeric 0.000000e+00 0.000000e+00 3.000000e+00 4.000000e+00
-## ...6    total_pr numeric 2.898000e+01 4.117500e+01 4.650000e+01 5.399000e+01
-## ...7 seller_rate numeric 0.000000e+00 1.090000e+02 8.200000e+02 4.858000e+03
-## ...8      wheels numeric 0.000000e+00 0.000000e+00 1.000000e+00 2.000000e+00
-##               max         mean           sd   n missing
-## ...1 4.000775e+11 2.235290e+11 8.809543e+10 143       0
-## ...2 1.000000e+01 3.769231e+00 2.585693e+00 143       0
-## ...3 2.900000e+01 1.353846e+01 5.878786e+00 143       0
-## ...4 6.995000e+01 8.777203e+00 1.506745e+01 143       0
-## ...5 2.551000e+01 3.143706e+00 3.213179e+00 143       0
-## ...6 3.265100e+02 4.988049e+01 2.568856e+01 143       0
-## ...7 2.701440e+05 1.589842e+04 5.184032e+04 143       0
-## ...8 4.000000e+00 1.146853e+00 8.471829e-01 143       0</code></pre>
+##             name   class   min      Q1 median      Q3       max         mean
+## ...1    duration numeric  1.00   1.000    3.0    7.00     10.00     3.769231
+## ...2      n_bids numeric  1.00  10.000   14.0   17.00     29.00    13.538462
+## ...3    start_pr numeric  0.01   0.990    1.0   10.00     69.95     8.777203
+## ...4     ship_pr numeric  0.00   0.000    3.0    4.00     25.51     3.143706
+## ...5    total_pr numeric 28.98  41.175   46.5   53.99    326.51    49.880490
+## ...6 seller_rate numeric  0.00 109.000  820.0 4858.00 270144.00 15898.419580
+## ...7      wheels numeric  0.00   0.000    1.0    2.00      4.00     1.146853
+##                sd   n missing
+## ...1 2.585693e+00 143       0
+## ...2 5.878786e+00 143       0
+## ...3 1.506745e+01 143       0
+## ...4 3.213179e+00 143       0
+## ...5 2.568856e+01 143       0
+## ...6 5.184032e+04 143       0
+## ...7 8.471829e-01 143       0</code></pre>
 <p>Finally, let’s plot the data.</p>
 <div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="LRMULTI.html#cb968-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span> </span>
 <span id="cb968-2"><a href="LRMULTI.html#cb968-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(total_pr<span class="sc">~</span>cond) <span class="sc">%&gt;%</span></span>
@@ -935,10 +936,10 @@ Figure 30.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 <div class="sourceCode" id="cb975"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb975-1"><a href="LRMULTI.html#cb975-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="sc">%&gt;%</span></span>
 <span id="cb975-2"><a href="LRMULTI.html#cb975-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_pr <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 12
-##           id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
-## 1    1.10e11        7     22 used      1       25.5     327. parcel          115
-## 2    1.30e11        3     27 used      6.95     4       118. parcel           41
+##   id         duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
+##   &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+## 1 110439174…        7     22 used      1       25.5     327. parcel          115
+## 2 130335427…        3     27 used      6.95     4       118. parcel           41
 ## # … with 3 more variables: stock_photo &lt;fct&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
 <p>If you look at the variable <code>title</code> there were additional items in the sale for these two observations. Let’s remove those two outliers and run the model again. Note that the reason we are removing them is not because they are annoying us and messing up our model. It is because we don’t think they are representative of the population of interest. Figure <a href="LRMULTI.html#fig:scat302-fig">30.3</a> is a boxplot of the data with the outliers dropped.</p>
 <div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="LRMULTI.html#cb977-1" aria-hidden="true" tabindex="-1"></a>mariokart_new <span class="ot">&lt;-</span> mariokart <span class="sc">%&gt;%</span></span>
