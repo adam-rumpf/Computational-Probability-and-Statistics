@@ -804,55 +804,56 @@ div.csl-indent {
 <div id="mario-kart-data" class="section level3" number="31.2.1">
 <h3><span class="header-section-number">31.2.1</span> Mario Kart data</h3>
 <p>Read the data and summarize.</p>
-<div class="sourceCode" id="cb1030"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1030-1"><a href="LOGREG.html#cb1030-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/mariokart.csv&quot;</span>)</span>
-<span id="cb1030-2"><a href="LOGREG.html#cb1030-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mariokart,<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1030"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1030-1"><a href="LOGREG.html#cb1030-1" aria-hidden="true" tabindex="-1"></a>mariokart <span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/mariokart.csv&quot;</span>,</span>
+<span id="cb1030-2"><a href="LOGREG.html#cb1030-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col_types=</span><span class="fu">list</span>(<span class="fu">col_character</span>()))</span>
+<span id="cb1030-3"><a href="LOGREG.html#cb1030-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mariokart,<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 12
-##           id duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
-##  1   1.50e11        3     20 new       0.99    4        51.6 standa…        1580
-##  2   2.60e11        7     13 used      0.99    3.99     37.0 firstC…         365
-##  3   3.20e11        3     16 new       0.99    3.5      45.5 firstC…         998
-##  4   2.80e11        3     18 new       0.99    0        44   standa…           7
-##  5   1.70e11        1     20 new       0.01    0        71   media           820
-##  6   3.60e11        3     19 new       0.99    4        45   standa…      270144
-##  7   1.20e11        1     13 used      0.01    0        37.0 standa…        7284
-##  8   3.00e11        1     15 new       1       2.99     54.0 upsGro…        4858
-##  9   2.00e11        3     29 used      0.99    4        47   priori…          27
-## 10   3.30e11        7      8 used     20.0     4        50   firstC…         201
+##    id       duration n_bids cond  start_pr ship_pr total_pr ship_sp  seller_rate
+##    &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;
+##  1 1503774…        3     20 new       0.99    4        51.6 standard        1580
+##  2 2604833…        7     13 used      0.99    3.99     37.0 firstCl…         365
+##  3 3204323…        3     16 new       0.99    3.5      45.5 firstCl…         998
+##  4 2804052…        3     18 new       0.99    0        44   standard           7
+##  5 1703922…        1     20 new       0.01    0        71   media            820
+##  6 3601951…        3     19 new       0.99    4        45   standard      270144
+##  7 1204777…        1     13 used      0.01    0        37.0 standard        7284
+##  8 3003555…        1     15 new       1       2.99     54.0 upsGrou…        4858
+##  9 2003920…        3     29 used      0.99    4        47   priority          27
+## 10 3303641…        7      8 used     20.0     4        50   firstCl…         201
 ## # … with 3 more variables: stock_photo &lt;chr&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
 <div class="sourceCode" id="cb1032"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1032-1"><a href="LOGREG.html#cb1032-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(mariokart)</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##          name     class levels   n missing
-## 1        cond character      2 143       0
-## 2     ship_sp character      8 143       0
-## 3 stock_photo character      2 143       0
-## 4       title character     80 142       1
+## 1          id character    143 143       0
+## 2        cond character      2 143       0
+## 3     ship_sp character      8 143       0
+## 4 stock_photo character      2 143       0
+## 5       title character     80 142       1
 ##                                    distribution
-## 1 used (58.7%), new (41.3%)                    
-## 2 standard (23.1%), upsGround (21.7%) ...      
-## 3 yes (73.4%), no (26.6%)                      
-## 4  (%) ...                                     
+## 1 110439174663 (0.7%) ...                      
+## 2 used (58.7%), new (41.3%)                    
+## 3 standard (23.1%), upsGround (21.7%) ...      
+## 4 yes (73.4%), no (26.6%)                      
+## 5  (%) ...                                     
 ## 
 ## quantitative variables:  
-##             name   class          min           Q1       median           Q3
-## ...1          id numeric 1.104392e+11 1.403506e+11 2.204911e+11 2.953551e+11
-## ...2    duration numeric 1.000000e+00 1.000000e+00 3.000000e+00 7.000000e+00
-## ...3      n_bids numeric 1.000000e+00 1.000000e+01 1.400000e+01 1.700000e+01
-## ...4    start_pr numeric 1.000000e-02 9.900000e-01 1.000000e+00 1.000000e+01
-## ...5     ship_pr numeric 0.000000e+00 0.000000e+00 3.000000e+00 4.000000e+00
-## ...6    total_pr numeric 2.898000e+01 4.117500e+01 4.650000e+01 5.399000e+01
-## ...7 seller_rate numeric 0.000000e+00 1.090000e+02 8.200000e+02 4.858000e+03
-## ...8      wheels numeric 0.000000e+00 0.000000e+00 1.000000e+00 2.000000e+00
-##               max         mean           sd   n missing
-## ...1 4.000775e+11 2.235290e+11 8.809543e+10 143       0
-## ...2 1.000000e+01 3.769231e+00 2.585693e+00 143       0
-## ...3 2.900000e+01 1.353846e+01 5.878786e+00 143       0
-## ...4 6.995000e+01 8.777203e+00 1.506745e+01 143       0
-## ...5 2.551000e+01 3.143706e+00 3.213179e+00 143       0
-## ...6 3.265100e+02 4.988049e+01 2.568856e+01 143       0
-## ...7 2.701440e+05 1.589842e+04 5.184032e+04 143       0
-## ...8 4.000000e+00 1.146853e+00 8.471829e-01 143       0</code></pre>
+##             name   class   min      Q1 median      Q3       max         mean
+## ...1    duration numeric  1.00   1.000    3.0    7.00     10.00     3.769231
+## ...2      n_bids numeric  1.00  10.000   14.0   17.00     29.00    13.538462
+## ...3    start_pr numeric  0.01   0.990    1.0   10.00     69.95     8.777203
+## ...4     ship_pr numeric  0.00   0.000    3.0    4.00     25.51     3.143706
+## ...5    total_pr numeric 28.98  41.175   46.5   53.99    326.51    49.880490
+## ...6 seller_rate numeric  0.00 109.000  820.0 4858.00 270144.00 15898.419580
+## ...7      wheels numeric  0.00   0.000    1.0    2.00      4.00     1.146853
+##                sd   n missing
+## ...1 2.585693e+00 143       0
+## ...2 5.878786e+00 143       0
+## ...3 1.506745e+01 143       0
+## ...4 3.213179e+00 143       0
+## ...5 2.568856e+01 143       0
+## ...6 5.184032e+04 143       0
+## ...7 8.471829e-01 143       0</code></pre>
 <p>We are again only interested in <code>total_pr</code>, <code>cond</code>, <code>stock_photo</code>, <code>duration</code>, and <code>wheels</code>. These variables are described in the following list:</p>
 <ol style="list-style-type: decimal">
 <li><code>total_pr</code>: final auction price plus shipping costs, in US dollars<br />
@@ -1383,7 +1384,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <span id="cb1105-2"><a href="LOGREG.html#cb1105-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span><span class="fu">resample</span>(mariokart),</span>
 <span id="cb1105-3"><a href="LOGREG.html#cb1105-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
-## 1 -12.66335       1.541583 0.2332932    1      1</code></pre>
+## 1 -8.632336        1.20822 0.1499031    1      1</code></pre>
 <p>Again, it looks like what we expect. Now let’s bootstrap the coefficients and summarize the results.</p>
 <div class="sourceCode" id="cb1107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1107-1"><a href="LOGREG.html#cb1107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5011</span>)</span>
 <span id="cb1107-2"><a href="LOGREG.html#cb1107-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">glm</span>(cond<span class="sc">==</span><span class="st">&quot;new&quot;</span><span class="sc">~</span>stock_photo<span class="sc">+</span>total_pr,</span>
