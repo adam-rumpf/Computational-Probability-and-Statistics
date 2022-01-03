@@ -218,7 +218,7 @@ Figure 11.5: Probability represented by shaded area
 In <code>R</code> for our example, this looks like the following.</p>
 <div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.8308491</code></pre>
+<pre><code>## [1] 0.9100525</code></pre>
 <div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div style="page-break-after: always;"></div>
@@ -227,9 +227,9 @@ In <code>R</code> for our example, this looks like the following.</p>
 <pre><code>## 
 ## quantitative variables:  
 ##      name   class        min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.01718442 0.5058664 0.7118378 0.8705021 0.9999951 0.6707643
+## ...1 sqrt numeric 0.02652094 0.5034528 0.7076838 0.8652588 0.9999587 0.6677513
 ##             sd     n missing
-## ...1 0.2353897 10000       0</code></pre>
+## ...1 0.2344513 10000       0</code></pre>
 <div style="page-break-after: always;"></div>
 <p>Figure <a href="CONRANDVAR.html#fig:plot116-fig">11.6</a> is a density plot of the simulated density function.</p>
 <div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
@@ -290,7 +290,7 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
 <p>Using our simulation.</p>
 <div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.6707643</code></pre>
+<pre><code>## [1] 0.6677513</code></pre>
 <p><span class="math display">\[
 \sigma^2_X = \mbox{Var}(X)= \mbox{E}(X^2)-\mbox{E}(X)^2 = \int_0^1 x^2\cdot 2x\mathop{}\!\mathrm{d}x - \left(\frac{2}{3}\right)^2 = \frac{2x^4}{4}\bigg|_0^1-\frac{4}{9}=\frac{1}{2}-\frac{4}{9}=\frac{1}{18}=0.056
 \]</span></p>
@@ -304,7 +304,7 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
 <pre><code>## [1] 0.05555556</code></pre>
 <div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaic/man/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="fl">9999</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
-<pre><code>## [1] 0.05540276</code></pre>
+<pre><code>## [1] 0.0549619</code></pre>
 <p>And finally, the standard deviation of <span class="math inline">\(X\)</span> is <span class="math inline">\(\sigma_X = \sqrt{\sigma^2_X}=\sqrt{1/18}=0.236\)</span>.</p>
 </div>
 </div>
@@ -375,7 +375,7 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2021-12-28.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-01-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
