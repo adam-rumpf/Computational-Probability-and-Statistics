@@ -3,7 +3,7 @@
 # Case Study {#CS1}
 
 
-## Objectives
+## (Edit) Objectives
 
 1) Use R for basic analysis and visualization.  
 2) Compile a report using `knitr`.
